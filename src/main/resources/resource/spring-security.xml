@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<!-- 配置不过滤的资源（静态资源及登录相关） -->
+	<security:http pattern="/**/common/**" security="none" />
+	<security:http pattern="/index" security="none" />
+	<security:http pattern="/exit" security="none"/> 
+	<security:http pattern="/error" security="none"/>
+	
+	<!--自定义登录页面 -->
+	<security:http auto-config="true">
+    	<security:intercept-url pattern="/**" access="ROLE_ADMIN"/> 
+    	<security:form-login authentication-failure-url="/error" login-page="/index" default-target-url="/main" always-use-default-target="true" />
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service >
+				<security:user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+</beans>
