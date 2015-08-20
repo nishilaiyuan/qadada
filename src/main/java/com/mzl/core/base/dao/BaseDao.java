@@ -1,5 +1,7 @@
 package com.mzl.core.base.dao;
 
-public interface BaseDao<T>{
+import com.mzl.core.base.service.Base;
+
+public interface BaseDao<T> extends Base<T>{
 	
 }

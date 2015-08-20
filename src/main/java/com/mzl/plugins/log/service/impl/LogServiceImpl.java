@@ -24,7 +24,8 @@ public class LogServiceImpl implements LogService {
 	@Override
 	public Long getRecordCount(Log t) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		//return logDao.getRecordCount(t);
+		return logDao.getRecordCount(t);
 	}
 
 	@Override
