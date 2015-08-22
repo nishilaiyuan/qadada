@@ -52,4 +52,10 @@ public class LogServiceImpl implements LogService {
 		
 	}
 
+	@Override
+	public List<Log> getAll(Log t) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

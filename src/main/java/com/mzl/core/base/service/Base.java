@@ -4,12 +4,13 @@ import java.util.List;
 
 public interface Base<T> {
 	
+	public List<T> getAll(T t) throws Exception;
 	/**
 	 * 返回分页数据
 	 * @param t
 	 * @return
 	 */
-	public List<T> getPaginatedList(T t)throws Exception;
+	public List<T> getPaginatedList(T t) throws Exception;
 	
 	/**
 	 * 查询记录总条数

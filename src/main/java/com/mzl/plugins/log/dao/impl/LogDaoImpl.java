@@ -9,7 +9,13 @@ import com.mzl.plugins.log.dao.LogDao;
 import com.mzl.plugins.log.entity.Log;
 
 @Repository
-public class LogDaoImpl<T> extends CommonDao<T> implements LogDao{
+public class LogDaoImpl extends CommonDao<Log> implements LogDao{
+
+	@Override
+	public List<Log> getAll(Log t) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public List<Log> getPaginatedList(Log t) throws Exception {
@@ -20,7 +26,7 @@ public class LogDaoImpl<T> extends CommonDao<T> implements LogDao{
 	@Override
 	public Long getRecordCount(Log t) throws Exception {
 		// TODO Auto-generated method stub
-		return this.getSqlSession().selectOne("log.getRecordCount", t);
+		return null;
 	}
 
 	@Override

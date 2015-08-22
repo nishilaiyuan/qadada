@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resources">
+
+  <parameterMap id="resources" type="com.mzl.plugins.system.resources.entity.Resources" />
+  
+  <resultMap id="resourcesResult" type="com.mzl.plugins.system.resources.entity.Resources">
+    <result property="id" column="ID" javaType="java.lang.Long" />
+   
+  </resultMap>
+	<sql id="selectId">
+		id,
+		name,
+		parentId,
+		(select r.name from SM_Resources r where r.id = resources.parentId ) parentName,
+		resKey,
+		type,
+		resUrl,
+		level,
+		description
+	</sql>
+  <select id="select" parameterMap="resources" resultMap="resourcesResult">
+  	 select
+	 <include refid="selectId" />
+	from SM_Resources resources
+	where 1+1
+	<if test="name != null and name != ''">
+			and name like '%${name}%'
+			</if>
+	<if test="parentId != null">
+			and parentId =#{parentId}
+	</if>
+	order By level asc
+  </select>
+
+</mapper>
