@@ -37,7 +37,24 @@
         <div class="left">
             <div class="lefttop"><span></span>通讯录</div>
     
-            <dl class="leftmenu">    
+            <dl class="leftmenu">  
+            	<c:forEach items="${resources}" var="menu">
+		    		<c:if test="${menu.level eq 0}">
+		    			<dd>
+			    			<div class="title">
+			                    <span><img src="${path}/common/images/leftico01.png" /></span>${menu.name}
+			                </div>
+		                	<ul class="menuson">
+			    				<c:forEach items="${resources}" var="k">
+			    					<c:if test="${k.parentId eq menu.id}">
+			    						<li><cite></cite><a href="${base}/${k.resUrl}" target="content">${k.name}</a><i></i></li>
+			    					</c:if>
+			    				</c:forEach>
+			    			</ul>
+		    			</dd>
+		    		</c:if>
+		    	</c:forEach>
+            	<!--   
                 <dd>
                     <div class="title">
                         <span><img src="${path}/common/images/leftico01.png" /></span>管理信息
@@ -90,11 +107,12 @@
                         <li><cite></cite><a href="#">信息列表</a><i></i></li>
                         <li><cite></cite><a href="#">其他</a><i></i></li>
                     </ul>
-                </dd>   
+                </dd> 
+                 --> 
             </dl>
         </div>
         <div class="right">
-            <iframe src="login.html" width="100%" id="content" scrolling="no"></iframe>
+            <iframe src="login.html" width="100%" id="content" name="content" scrolling="no"></iframe>
         </div>
     </div>
 </body>

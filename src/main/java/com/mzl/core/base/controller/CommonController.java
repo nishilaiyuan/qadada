@@ -6,7 +6,9 @@
 */
 package com.mzl.core.base.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,15 +23,20 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mzl.plugins.system.resources.entity.Resources;
+import com.mzl.plugins.system.resources.service.ResourcesService;
 import com.mzl.plugins.system.user.entity.Account;
 import com.mzl.plugins.system.user.service.UserService;
 import com.mzl.util.Common;
 import com.mzl.util.Md5Tool;
+import com.mzl.util.PropertiesUtils;
 
 
 @Controller
@@ -39,7 +46,8 @@ public class CommonController{
 	private UserService userService;
 	@Autowired
 	private AuthenticationManager myAuthenticationManager;
-	
+	@Autowired
+	private ResourcesService resourcesService;
 	@RequestMapping("/login")
 	public ModelAndView index(HttpServletRequest request, HttpServletResponse response){
 		return new ModelAndView("/login");
@@ -78,7 +86,8 @@ public class CommonController{
 	}
 	
 	@RequestMapping ("submitlogin")
-	public String submitlogin(String username,String password,HttpServletRequest request,RedirectAttributes attr) throws Exception{
+	public ModelAndView submitlogin(ModelMap model,String username,String password,HttpServletRequest request,RedirectAttributes attr) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		try {
 			if (!request.getMethod().equals("POST")) {
 				request.setAttribute("error","支持POST方法提交！");
@@ -86,7 +95,8 @@ public class CommonController{
 			if (Common.isEmpty(username) || Common.isEmpty(password)) {
 //				request.setAttribute("error","用户名或密码不能为空！");
 				attr.addAttribute("error","用户名或密码不能为空！");
-				return "redirect:login";
+				mv.setViewName("login");
+				return mv;
 			}
 			// 验证用户账号与密码是否正确
 			
@@ -94,21 +104,31 @@ public class CommonController{
 			if (users == null) {
 //				request.setAttribute("error", "用户或密码不正确！");
 				attr.addAttribute("error", "用户或密码不正确！");
-				return "redirect:login";
+//				return "redirect:login";
+				mv.setViewName("login");
+				return mv;
 			}
 			else if (users != null && Common.isEmpty(users.getName())){
 //				request.setAttribute("error", "用户或密码不正确！");
 				attr.addAttribute("error", "用户或密码不正确！");
-				return "redirect:login";
-			}else if(!Md5Tool.getMd5(password).equals(users.getPassword())){
-				attr.addAttribute("error", "用户或密码不正确！");
-				return "redirect:login";
+//				return "redirect:login";
+				mv.setViewName("login");
+				return mv;
 			}
+//			else if(!Md5Tool.getMd5(password).equals(users.getPassword())){
+//				attr.addAttribute("error", "用户或密码不正确！");
+//				return "redirect:login";
+//				mv.setViewName("login");
+//				return mv;
+//			}
 			Authentication authentication = myAuthenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,users.getPassword()));
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			securityContext.setAuthentication(authentication);
 			HttpSession session = request.getSession(true);  
-		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);  
+		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+		    //获得用户资源权限
+		    List<Resources> resourcesList = getUserResources(users);
+		    mv.addObject("resources", resourcesList);
 		    // 当验证都通过后，把用户信息放在session里
 			request.getSession().setAttribute("userSession", users);
 			request.getSession().setAttribute("userSessionId", users.getId());
@@ -123,12 +143,25 @@ public class CommonController{
 //			userLoginService.add(userLogin);
 			//request.getSession().setAttribute("userRole",authentication.getPrincipal());
 			request.removeAttribute("error");
+			mv.setViewName("main");
+			return mv;
 		} catch (AuthenticationException ae) {  
 //			request.setAttribute("error", "登录异常，请联系管理员！");
 			ae.printStackTrace();
 			attr.addAttribute("error", "登录异常，请联系管理员！");
-			return "redirect:login";
+			mv.setViewName("login");
+			return mv;
 		}
-		return "redirect:main";
+	}
+	
+	private List<Resources> getUserResources(Account users) throws Exception {
+		// TODO Auto-generated method stub
+		List<Resources> list = new ArrayList<Resources>();
+		if (PropertiesUtils.findPropertiesKey("rootName").equals(Common.findAuthenticatedUsername())){
+			list =resourcesService.getAll(new Resources());
+		} else {
+			list =resourcesService.findAccountResourcess(users);
+		}
+		return list;
 	}
 }
