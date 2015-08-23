@@ -109,9 +109,9 @@ public class CommonController{
 			request.getSession().setAttribute("userSession", users);
 			request.getSession().setAttribute("userSessionId", users.getId());
 			System.out.println(authentication.getPrincipal().toString());
-			String userId = request.getSession().getAttribute("userSessionId").toString();
-			String userName = users.getName();
-			String ip = Common.toIpAddr(request);
+//			String userId = request.getSession().getAttribute("userSessionId").toString();
+//			String userName = users.getName();
+//			String ip = Common.toIpAddr(request);
 //			UserLogin userLogin = new UserLogin();
 //			userLogin.setUserId(Integer.parseInt(userId));
 //			userLogin.setUserName(userName);
@@ -121,9 +121,10 @@ public class CommonController{
 			request.removeAttribute("error");
 		} catch (AuthenticationException ae) {  
 //			request.setAttribute("error", "登录异常，请联系管理员！");
+			ae.printStackTrace();
 			attr.addAttribute("error", "登录异常，请联系管理员！");
 			return "redirect:login";
 		}
-		return "redirect:login";
+		return "redirect:main";
 	}
 }
