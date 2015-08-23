@@ -1,12 +1,12 @@
-package com.mzl.plugins.log.dao.impl;
+package com.mzl.plugins.system.log.dao.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.mzl.core.base.dao.CommonDao;
-import com.mzl.plugins.log.dao.LogDao;
-import com.mzl.plugins.log.entity.Log;
+import com.mzl.plugins.system.log.dao.LogDao;
+import com.mzl.plugins.system.log.entity.Log;
 
 @Repository
 public class LogDaoImpl extends CommonDao<Log> implements LogDao{

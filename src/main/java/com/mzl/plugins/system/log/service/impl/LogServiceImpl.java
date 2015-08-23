@@ -1,13 +1,13 @@
-package com.mzl.plugins.log.service.impl;
+package com.mzl.plugins.system.log.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mzl.plugins.log.dao.LogDao;
-import com.mzl.plugins.log.entity.Log;
-import com.mzl.plugins.log.service.LogService;
+import com.mzl.plugins.system.log.dao.LogDao;
+import com.mzl.plugins.system.log.entity.Log;
+import com.mzl.plugins.system.log.service.LogService;
 
 @Service
 public class LogServiceImpl implements LogService {

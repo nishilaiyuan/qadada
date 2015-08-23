@@ -1,7 +1,7 @@
-package com.mzl.plugins.log.service;
+package com.mzl.plugins.system.log.service;
 
 import com.mzl.core.base.service.BaseService;
-import com.mzl.plugins.log.entity.Log;
+import com.mzl.plugins.system.log.entity.Log;
 
 public interface LogService extends BaseService<Log>{
 

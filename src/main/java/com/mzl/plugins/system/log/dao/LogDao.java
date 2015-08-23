@@ -1,7 +1,7 @@
-package com.mzl.plugins.log.dao;
+package com.mzl.plugins.system.log.dao;
 
 import com.mzl.core.base.dao.BaseDao;
-import com.mzl.plugins.log.entity.Log;
+import com.mzl.plugins.system.log.entity.Log;
 
 public interface LogDao extends BaseDao<Log>{
 

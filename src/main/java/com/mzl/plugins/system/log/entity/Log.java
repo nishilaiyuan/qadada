@@ -1,4 +1,4 @@
-package com.mzl.plugins.log.entity;
+package com.mzl.plugins.system.log.entity;
 
 import java.util.Date;
 
