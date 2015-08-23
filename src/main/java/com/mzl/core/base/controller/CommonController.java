@@ -89,14 +89,18 @@ public class CommonController{
 				return "redirect:login";
 			}
 			// 验证用户账号与密码是否正确
+			
 			Account users = this.userService.querySingleAccount(username);
 			if (users == null) {
 //				request.setAttribute("error", "用户或密码不正确！");
 				attr.addAttribute("error", "用户或密码不正确！");
 				return "redirect:login";
 			}
-			else if (users != null && Common.isEmpty(users.getName()) && !Md5Tool.getMd5(password).equals(users.getPassword())){
+			else if (users != null && Common.isEmpty(users.getName())){
 //				request.setAttribute("error", "用户或密码不正确！");
+				attr.addAttribute("error", "用户或密码不正确！");
+				return "redirect:login";
+			}else if(!Md5Tool.getMd5(password).equals(users.getPassword())){
 				attr.addAttribute("error", "用户或密码不正确！");
 				return "redirect:login";
 			}
