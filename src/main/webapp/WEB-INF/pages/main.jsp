@@ -47,7 +47,7 @@
 		                	<ul class="menuson">
 			    				<c:forEach items="${resources}" var="k">
 			    					<c:if test="${k.parentId eq menu.id}">
-			    						<li><cite></cite><a href="${base}/${k.resUrl}" target="content">${k.name}</a><i></i></li>
+			    						<li><cite></cite><a href="${path}/${k.resUrl}" target="content">${k.name}</a><i></i></li>
 			    					</c:if>
 			    				</c:forEach>
 			    			</ul>
