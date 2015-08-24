@@ -18,12 +18,7 @@
     <http pattern="/loginCheck" security="none"/>
     <http pattern="/submitlogin" security="none"/>
      
-    <http pattern="/**/*.css" security="none"/>
-    <http pattern="/**/*.js" security="none"/>
-    <http pattern="/**/*.jpg" security="none"/>
-    <http pattern="/**/*.png" security="none"/>
-    <http pattern="/**/*.gif" security="none"/>
-    <http pattern="/**/*.swf" security="none"/>
+    <http pattern="/**/common/**" security="none"/>
 	<!--/
 	开启支持方法注解的权限控制：
 	@PreAuthorize：该注解用来确定一个方法是否应该被执行。该注解后面跟着的是一个表达式，如果表达式的值为真，则该方法会被执行。如 @PreAuthorize("hasRole('ROLE_USER')")就说明只有当前用户具有角色 ROLE_USER的时候才会执行。

@@ -8,168 +8,107 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link href="${path}/common/css/style.css" rel="stylesheet" type="text/css" />
-	<link href="${path}/common/css/select.css" rel="stylesheet" type="text/css" />
-
-	<script type="text/javascript" src="${path}/common/js/jquery.js"></script>
-	<script type="text/javascript" src="${path}/common/js/index.js"></script>
-	<script type="text/javascript" src="${path}/common/js/jquery.idTabs.min.js"></script>
-	<script type="text/javascript" src="${path}/common/js/select-ui.min.js"></script>
+	<link href="${path}/common/css/index.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<link href="${path}/common/css/jqGrid/ui.jqgrid-bootstrap.css" rel="stylesheet" type="text/css" />
 	
+	<script type="text/javascript" src="${path}/common/js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="${path}/common/js/jqGrid/i18n/grid.locale-cn.js"></script>
+	<script type="text/javascript" src="${path}/common/js/jqGrid/jquery.jqGrid.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
 	<script type="text/javascript">
 		var path = "${path}"; //javascript全局变量
+		/**加载数据**/
+		$(function(){
+				$("#userlist").jqGrid({
+					url: '${path}/system/user/grid',
+					datatype: 'json',
+					colNames: [
+			                   '',
+			                   '帐号',
+			                   '密码',
+			                   '昵称'
+			                   ],
+			       colModel: [
+			                  {name: 'id',index: 'id',width:'10%',align:'center',hidden: true,sortable: false}, 
+			                  {name: 'name',index: 'name',width:'10%',align:'center',hidden: false,sortable: false},
+			                  {name: 'password',index: 'password',width:'10%',align:'center',hidden: false,sortable: false},
+			                  {name: 'roleName',index: 'roleName',width:'10%',align:'center',hidden: false,sortable: false}
+			                  ],
+			       styleUI : 'Bootstrap',
+			       rowNum:10,   
+			       page:1,
+			       rowList: [10,15,20,30],
+			       pager: '#pagered',
+			       height:'300',
+			       autowidth: true,
+			       viewrecords: false,
+			       multiselect: false,
+			       rownumbers: true,
+			       jsonReader: {
+			       	repeatitems: false
+			       },
+			       caption:'用户列表',
+			       toolbar: [false,"top"]
+				})
+		})
 	</script>
 </head>
 <body>
-	<div class="place">
-		<span>位置：</span>
-		<ul class="placeul">
-			<li><a href="javascript:;;">首页</a></li>
-			<li><a href="javascript:;;">系统设置</a></li>
-			<li><a href="javascript:;;">用户管理</a></li>
-		</ul>
-	</div>
+<!-- 	<div class="place"> -->
+<!-- 		<span>位置：</span> -->
+<!-- 		<ul class="placeul"> -->
+<!-- 			<li><a href="javascript:;;">首页</a></li> -->
+<!-- 			<li><a href="javascript:;;">系统设置</a></li> -->
+<!-- 			<li><a href="javascript:;;">用户管理</a></li> -->
+<!-- 		</ul> -->
+<!-- 	</div> -->
 
-	<div class="formbody">
+<!-- 	<div class="formbody"> -->
+<!-- 		<div id="usual1" class="usual"> -->
+<!-- 			<div id="tab2" class="tabson"> -->
+<!-- 				<ul class="seachform"> -->
+<!-- 					<li><label>综合查询</label><input name="" type="text" class="scinput" /></li> -->
+<!-- 					<li><label>指派</label> -->
+<!-- 						<div class="vocation"> -->
+<!-- 							<select class="select3"> -->
+<!-- 								<option>全部</option> -->
+<!-- 								<option>其他</option> -->
+<!-- 							</select> -->
+<!-- 						</div></li> -->
 
+<!-- 					<li><label>重点客户</label> -->
+<!-- 						<div class="vocation"> -->
+<!-- 							<select class="select3"> -->
+<!-- 								<option>全部</option> -->
+<!-- 								<option>其他</option> -->
+<!-- 							</select> -->
+<!-- 						</div></li> -->
 
-		<div id="usual1" class="usual">
+<!-- 					<li><label>客户状态</label> -->
+<!-- 						<div class="vocation"> -->
+<!-- 							<select class="select3"> -->
+<!-- 								<option>全部</option> -->
+<!-- 								<option>其他</option> -->
+<!-- 							</select> -->
+<!-- 						</div></li> -->
 
-			<div id="tab2" class="tabson">
+<!-- 					<li><label>&nbsp;</label><input name="" type="button" -->
+<!-- 						class="scbtn" value="查询" /></li> -->
 
-
-				<ul class="seachform">
-
-					<li><label>综合查询</label><input name="" type="text"
-						class="scinput" /></li>
-					<li><label>指派</label>
-						<div class="vocation">
-							<select class="select3">
-								<option>全部</option>
-								<option>其他</option>
-							</select>
-						</div></li>
-
-					<li><label>重点客户</label>
-						<div class="vocation">
-							<select class="select3">
-								<option>全部</option>
-								<option>其他</option>
-							</select>
-						</div></li>
-
-					<li><label>客户状态</label>
-						<div class="vocation">
-							<select class="select3">
-								<option>全部</option>
-								<option>其他</option>
-							</select>
-						</div></li>
-
-					<li><label>&nbsp;</label><input name="" type="button"
-						class="scbtn" value="查询" /></li>
-
-				</ul>
+<!-- 				</ul> -->
 
 
-				<table class="tablelist">
-					<thead>
-						<tr>
-							<th><input name="" type="checkbox" value=""
-								checked="checked" /></th>
-							<th>编号<i class="sort"><img src="${path}/common/images/px.gif" /></i></th>
-							<th>标题</th>
-							<th>用户</th>
-							<th>籍贯</th>
-							<th>发布时间</th>
-							<th>是否审核</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><input name="" type="checkbox" value="" /></td>
-							<td>20130908</td>
-							<td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
-							<td>admin</td>
-							<td>江苏南京</td>
-							<td>2013-09-09 15:05</td>
-							<td>已审核</td>
-							<td><a href="#" class="tablelink">查看</a> <a href="#"
-								class="tablelink"> 删除</a></td>
-						</tr>
+<!-- 				<div class="wrap"> -->
+<!-- 					<table id="userlist" class="table"></table> -->
+<!-- 					<div id="pagered"></div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
-						<tr>
-							<td><input name="" type="checkbox" value="" /></td>
-							<td>20130907</td>
-							<td>温州19名小学生中毒流鼻血续：周边部分企业关停</td>
-							<td>uimaker</td>
-							<td>山东济南</td>
-							<td>2013-09-08 14:02</td>
-							<td>未审核</td>
-							<td><a href="#" class="tablelink">查看</a> <a href="#"
-								class="tablelink">删除</a></td>
-						</tr>
-
-						<tr>
-							<td><input name="" type="checkbox" value="" /></td>
-							<td>20130906</td>
-							<td>社科院:电子商务促进了农村经济结构和社会转型</td>
-							<td>user</td>
-							<td>江苏无锡</td>
-							<td>2013-09-07 13:16</td>
-							<td>未审核</td>
-							<td><a href="#" class="tablelink">查看</a> <a href="#"
-								class="tablelink">删除</a></td>
-						</tr>
-
-						<tr>
-							<td><input name="" type="checkbox" value="" /></td>
-							<td>20130905</td>
-							<td>江西&quot;局长违规建豪宅&quot;：局长检讨</td>
-							<td>admin</td>
-							<td>北京市</td>
-							<td>2013-09-06 10:36</td>
-							<td>已审核</td>
-							<td><a href="#" class="tablelink">查看</a> <a href="#"
-								class="tablelink">删除</a></td>
-						</tr>
-
-						<tr>
-							<td><input name="" type="checkbox" value="" /></td>
-							<td>20130907</td>
-							<td>温州19名小学生中毒流鼻血续：周边部分企业关停</td>
-							<td>uimaker</td>
-							<td>山东济南</td>
-							<td>2013-09-08 14:02</td>
-							<td>未审核</td>
-							<td><a href="#" class="tablelink">查看</a> <a href="#"
-								class="tablelink">删除</a></td>
-						</tr>
-
-					</tbody>
-				</table>
-				<div class="pagin">
-			        <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
-			        <ul class="paginList">
-			        <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-			        <li class="paginItem"><a href="javascript:;">1</a></li>
-			        <li class="paginItem current"><a href="javascript:;">2</a></li>
-			        <li class="paginItem"><a href="javascript:;">3</a></li>
-			        <li class="paginItem"><a href="javascript:;">4</a></li>
-			        <li class="paginItem"><a href="javascript:;">5</a></li>
-			        <li class="paginItem more"><a href="javascript:;">...</a></li>
-			        <li class="paginItem"><a href="javascript:;">10</a></li>
-			        <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
-			        </ul>
-			    </div>
-			</div>
-
-		</div>
-<script type="text/javascript">
-	$('.tablelist tbody tr:odd').addClass('odd');
-</script>
-	</div>
-
+<!-- 		</div> -->
+<!-- 	</div> -->
+<table id="userlist" class="table table-striped"></table>
+<div id="pagered"></div>
 </body>
 </html>

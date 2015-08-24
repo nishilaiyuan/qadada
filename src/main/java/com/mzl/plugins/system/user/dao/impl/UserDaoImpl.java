@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.mzl.core.base.dao.CommonDao;
-import com.mzl.plugins.system.resources.dao.ResourcesDao;
-import com.mzl.plugins.system.resources.entity.Resources;
 import com.mzl.plugins.system.user.dao.UserDao;
 import com.mzl.plugins.system.user.entity.Account;
 
@@ -22,13 +20,13 @@ public class UserDaoImpl extends CommonDao<Account> implements UserDao{
 	@Override
 	public List<Account> getPaginatedList(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getSqlSession().selectList("user.getPaginatedList", t);
 	}
 
 	@Override
 	public Long getRecordCount(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getSqlSession().selectOne("user.getRecordCount", t);
 	}
 
 	@Override

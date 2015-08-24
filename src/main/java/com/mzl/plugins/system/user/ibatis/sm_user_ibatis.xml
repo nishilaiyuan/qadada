@@ -15,4 +15,11 @@
 		from SM_User where name=#{name}
 	</select>
 
+	<select id="getRecordCount" parameterMap="user" resultType="long">
+		select count(1) from sm_user
+	</select>
+	
+	<select id="getPaginatedList" parameterMap="user" resultMap="userResult">
+		select * from sm_user limit ${start},${offset}
+	</select>
 </mapper>
