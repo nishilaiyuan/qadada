@@ -56,59 +56,30 @@
 	</script>
 </head>
 <body>
-<!-- 	<div class="place"> -->
-<!-- 		<span>位置：</span> -->
-<!-- 		<ul class="placeul"> -->
-<!-- 			<li><a href="javascript:;;">首页</a></li> -->
-<!-- 			<li><a href="javascript:;;">系统设置</a></li> -->
-<!-- 			<li><a href="javascript:;;">用户管理</a></li> -->
-<!-- 		</ul> -->
-<!-- 	</div> -->
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="javascript:;;">首页</a></li>
+			<li><a href="javascript:;;">系统设置</a></li>
+			<li><a href="javascript:;;">用户管理</a></li>
+		</ul>
+	</div>
 
-<!-- 	<div class="formbody"> -->
-<!-- 		<div id="usual1" class="usual"> -->
-<!-- 			<div id="tab2" class="tabson"> -->
-<!-- 				<ul class="seachform"> -->
-<!-- 					<li><label>综合查询</label><input name="" type="text" class="scinput" /></li> -->
-<!-- 					<li><label>指派</label> -->
-<!-- 						<div class="vocation"> -->
-<!-- 							<select class="select3"> -->
-<!-- 								<option>全部</option> -->
-<!-- 								<option>其他</option> -->
-<!-- 							</select> -->
-<!-- 						</div></li> -->
+	<div class="formbody">
+		<div id="usual1" class="usual">
+			<div id="tab2" class="tabson">
+				<ul class="seachform">
+					<li><label>综合查询</label><input name="" type="text" class="scinput" /></li>
+					<li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询" /></li>
 
-<!-- 					<li><label>重点客户</label> -->
-<!-- 						<div class="vocation"> -->
-<!-- 							<select class="select3"> -->
-<!-- 								<option>全部</option> -->
-<!-- 								<option>其他</option> -->
-<!-- 							</select> -->
-<!-- 						</div></li> -->
+				</ul>
+			</div>
 
-<!-- 					<li><label>客户状态</label> -->
-<!-- 						<div class="vocation"> -->
-<!-- 							<select class="select3"> -->
-<!-- 								<option>全部</option> -->
-<!-- 								<option>其他</option> -->
-<!-- 							</select> -->
-<!-- 						</div></li> -->
-
-<!-- 					<li><label>&nbsp;</label><input name="" type="button" -->
-<!-- 						class="scbtn" value="查询" /></li> -->
-
-<!-- 				</ul> -->
-
-
-<!-- 				<div class="wrap"> -->
-<!-- 					<table id="userlist" class="table"></table> -->
-<!-- 					<div id="pagered"></div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-
-<!-- 		</div> -->
-<!-- 	</div> -->
-<table id="userlist" class="table table-striped"></table>
-<div id="pagered"></div>
+		</div>
+	</div>
+<div class="wrap">
+	<table id="userlist" class="table table-striped"></table>
+	<div id="pagered"></div>
+</div>
 </body>
 </html>
