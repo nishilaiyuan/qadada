@@ -49,37 +49,31 @@
 			       jsonReader: {
 			       	repeatitems: false
 			       },
-			       caption:'用户列表',
 			       toolbar: [false,"top"]
-				})
+				});
+				
+				$('#create').bind("click",function(){
+					window.location.href = "${path}/system/user/create";
+				});
 		})
 	</script>
 </head>
 <body>
-	<div class="place">
-		<span>位置：</span>
-		<ul class="placeul">
-			<li><a href="javascript:;;">首页</a></li>
-			<li><a href="javascript:;;">系统设置</a></li>
-			<li><a href="javascript:;;">用户管理</a></li>
-		</ul>
+	<ol class="breadcrumb">
+	  <li><a href="#">Home</a></li>
+	  <li><a href="#">Library</a></li>
+	  <li class="active">Data</li>
+	</ol>
+	<div class="bar">
+		<button type="button" class="btn btn-primary" id="create">创建</button>
 	</div>
-
-	<div class="formbody">
-		<div id="usual1" class="usual">
-			<div id="tab2" class="tabson">
-				<ul class="seachform">
-					<li><label>综合查询</label><input name="" type="text" class="scinput" /></li>
-					<li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询" /></li>
-
-				</ul>
-			</div>
-
-		</div>
+	<div class="panel panel-primary">
+	  <div class="panel-heading">新增用户</div>
+	  <div class="panel-body">
+	    	<table id="userlist" class="table table-striped"></table>
+ 			<div id="pagered"></div>
+	  </div>
 	</div>
-<div class="wrap">
-	<table id="userlist" class="table table-striped"></table>
-	<div id="pagered"></div>
-</div>
 </body>
 </html>
+

@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
 import com.mzl.plugins.system.user.entity.Account;
 import com.mzl.plugins.system.user.service.UserService;
-import com.mzl.util.SpringmvcUtils;
 
 @Controller
 public class UserController {
@@ -44,5 +42,19 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return map;
+	}
+	
+	@RequestMapping("system/user/create")
+	public ModelAndView create(Account account, HttpServletRequest request,HttpServletResponse response){
+		ModelAndView mv = new ModelAndView("system/user/create");
+		return mv;
+	}
+	
+	@RequestMapping("system/user/save")
+	public ModelAndView save(Account account, HttpServletRequest request,HttpServletResponse response){
+		ModelAndView mv = new ModelAndView("ok");
+		mv.addObject("returnurl", "system/user/list");
+		mv.addObject("status", "success");
+		return mv;
 	}
 }
