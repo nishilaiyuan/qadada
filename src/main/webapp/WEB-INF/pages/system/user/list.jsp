@@ -32,7 +32,7 @@
 			                   ],
 			       colModel: [
 			                  {name: 'id',index: 'id',width:'10%',align:'center',hidden: true,sortable: false}, 
-			                  {name: 'name',index: 'name',width:'10%',align:'center',hidden: false,sortable: false},
+			                  {name: 'account',index: 'account',width:'10%',align:'center',hidden: false,sortable: false},
 			                  {name: 'password',index: 'password',width:'10%',align:'center',hidden: false,sortable: false},
 			                  {name: 'roleName',index: 'roleName',width:'10%',align:'center',hidden: false,sortable: false}
 			                  ],

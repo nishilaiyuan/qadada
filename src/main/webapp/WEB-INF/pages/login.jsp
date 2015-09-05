@@ -44,7 +44,7 @@
             <ul>
             <li><input name="username" type="text" class="loginuser" value="admin" id="username" onclick="JavaScript:this.value=''"/></li>
             <li><input name="password" type="password" class="loginpwd" value="密码" id="password" onclick="JavaScript:this.value=''"/></li>
-            <li><input type="button" class="loginbtn" value="登录"  onclick="checkUserForm();" /> <label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
+            <li><input type="submit" class="loginbtn" value="登录"   /> <label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
             </ul>
           </form>
         </div>

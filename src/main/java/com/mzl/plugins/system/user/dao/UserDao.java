@@ -5,6 +5,6 @@ import com.mzl.plugins.system.user.entity.Account;
 
 public interface UserDao extends BaseDao<Account>{
 
-	public Account querySingleAccount(String username) throws Exception;
+	public Account querySingleAccount(String account) throws Exception;
 
 }

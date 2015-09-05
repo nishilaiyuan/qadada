@@ -50,12 +50,12 @@ public class UserDaoImpl extends CommonDao<Account> implements UserDao{
 	@Override
 	public void save(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.getSqlSession().insert("user.insert", t);
 	}
 
 	@Override
-	public Account querySingleAccount(String username) throws Exception {
+	public Account querySingleAccount(String account) throws Exception {
 		// TODO Auto-generated method stub
-		return this.getSqlSession().selectOne("user.querySingleAccount", username);
+		return this.getSqlSession().selectOne("user.querySingleAccount", account);
 	}
 }

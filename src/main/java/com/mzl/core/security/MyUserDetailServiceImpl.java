@@ -66,7 +66,7 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
 		}
 		// 封装成spring security的user
 		User userdetail = new User(
-				users.getName(), 
+				users.getAccount(), 
 				users.getPassword(),
 				"1".equals(users.getState()) ? true:false,  //账号状态  0 表示停用  1表示启用
 				true, 
@@ -80,7 +80,7 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
 	// 取得用户的权限
 	private Set<GrantedAuthority> obtionGrantedAuthorities(Account account) throws Exception {
 		List<Resources> menus =null;
-		if(PropertiesUtils.findPropertiesKey("rootName").equals(account.getName())){//根据账号拥有所有权限
+		if(PropertiesUtils.findPropertiesKey("rootName").equals(account.getAccount())){//根据账号拥有所有权限
 			menus = resourcesService.getAll(new Resources());
 		}else{
 			menus = resourcesService.findAccountResourcess(account);

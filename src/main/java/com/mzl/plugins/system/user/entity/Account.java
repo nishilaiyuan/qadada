@@ -4,7 +4,7 @@ import com.mzl.core.base.entity.BaseEntiry;
 
 public class Account extends BaseEntiry{
 
-	private String name;//账号名
+	private String account;//账号名
 	
 	private String roleName;//账号名
 
@@ -16,12 +16,13 @@ public class Account extends BaseEntiry{
 
 	private String createTime; //创建时间
 
-	public String getName() {
-		return name;
+
+	public String getAccount() {
+		return account;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
 	public String getRoleName() {

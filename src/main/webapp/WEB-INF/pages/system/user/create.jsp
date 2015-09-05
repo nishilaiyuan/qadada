@@ -35,7 +35,7 @@
 			  <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">帐号</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="name" id="name" placeholder="账户"  style="width: 30%;" />
+			      <input type="text" class="form-control" name="account" id="account" placeholder="账户"  style="width: 30%;" />
 			    </div>
 			  </div>
 			  <div class="form-group">

@@ -60,13 +60,13 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void save(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		
+		userDao.save(t);
 	}
 
 	@Override
-	public Account querySingleAccount(String username) throws Exception {
+	public Account querySingleAccount(String account) throws Exception {
 		// TODO Auto-generated method stub
-		return userDao.querySingleAccount(username);
+		return userDao.querySingleAccount(account);
 	}
 
 	@Override

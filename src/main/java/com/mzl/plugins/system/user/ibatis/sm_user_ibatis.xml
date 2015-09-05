@@ -6,13 +6,13 @@
   
   <resultMap id="userResult" type="com.mzl.plugins.system.user.entity.Account">
     <result property="id" column="ID" javaType="java.lang.Long" />
-   
+    <result property="account" column="Account" />
   </resultMap>
   
 	<select id="querySingleAccount" parameterType="String" resultMap="userResult">
 		select
 		*
-		from SM_User where name=#{name}
+		from SM_User where Account=#{account}
 	</select>
 
 	<select id="getRecordCount" parameterMap="user" resultType="long">
@@ -22,4 +22,20 @@
 	<select id="getPaginatedList" parameterMap="user" resultMap="userResult">
 		select * from sm_user limit ${start},${offset}
 	</select>
+	
+	<insert id="insert" parameterMap="user">
+		INSERT INTO sm_user
+		<trim prefix="(" prefixOverrides="," suffix=")">
+			<if test="account !=null and  account!=''">,Account</if>
+			<if test="password !=null and  password!=''">,Password</if>
+		</trim>
+		values
+		<trim prefix="(" prefixOverrides="," suffix=")">
+			<if test="account !=null and  account!=''">,#{account}</if>
+			<if test="password !=null and  password!=''">,#{password}</if>
+		</trim>
+		<selectKey keyProperty="generatedKey" resultType="Long">
+			select LAST_INSERT_ID() as generatedKey     
+		</selectKey>
+	</insert>
 </mapper>

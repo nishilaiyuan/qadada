@@ -89,7 +89,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
 		// 验证用户账号与密码是否正确
 		Account u = new Account();
-		u.setName(username);
+		u.setAccount(username);
 		Account user = null;
 		try {
 			user = this.userService.getOne(u);

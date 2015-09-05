@@ -52,35 +52,3 @@
 	   })  
 	}); 
 	
-	function checkUserForm() {
-		alert("xxx");
-		var userName = $("#username").val();
-		var userPassword = $("#password").val();
-		if (userName == "" || userPassword == "") {
-			alert("用户名或密码不能为空");
-			return false;
-		}
-		var b;
-		$.ajax({
-					type : "POST",
-					url : "qadada/loginCheck.html?data="+ new Date(),
-					data : {
-						username : userName,
-						password : userPassword
-					},
-					dataType: "json",
-					async : false,
-					success : function(data) {
-						if (data.error == "0") {
-							b = false;
-						} else {
-							b = true;
-							alert(data.error);
-						}
-					}
-				});
-		if (b) {
-			return true;
-		}
-		document.loginForm.submit();
-	}

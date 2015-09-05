@@ -53,6 +53,12 @@ public class UserController {
 	@RequestMapping("system/user/save")
 	public ModelAndView save(Account account, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("ok");
+		try {
+			userService.save(account);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		mv.addObject("returnurl", "system/user/list");
 		mv.addObject("status", "success");
 		return mv;
