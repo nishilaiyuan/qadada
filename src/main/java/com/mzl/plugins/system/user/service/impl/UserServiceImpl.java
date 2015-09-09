@@ -42,19 +42,19 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void delete(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.userDao.delete(t);
 	}
 
 	@Override
 	public void update(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.userDao.update(t);
 	}
 
 	@Override
 	public Account getOne(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return this.userDao.getOne(t);
 	}
 
 	@Override

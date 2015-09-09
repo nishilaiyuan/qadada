@@ -38,4 +38,26 @@
 			select LAST_INSERT_ID() as generatedKey     
 		</selectKey>
 	</insert>
+	
+	<select id="select_one" parameterMap="user" resultMap="userResult">
+		select
+		*
+		from SM_User where ID=#{id}
+	</select>
+	
+	<!-- 角色更新 -->
+	<update id="update" parameterMap="user">
+		update SM_User
+		<set>
+			<trim prefixOverrides=",">
+				<if test="account !=null and  account!=''">,Account=#{account}</if>
+				<if test="password !=null and  password!=''">,Password=#{password}</if>
+			</trim>
+		</set>
+		where ID = ${id}
+	</update>
+	
+	<delete id="delete" parameterMap="user">
+		delete from SM_User where ID = ${id} 
+	</delete>
 </mapper>

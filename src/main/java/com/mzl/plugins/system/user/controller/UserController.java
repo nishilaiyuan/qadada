@@ -1,5 +1,6 @@
 package com.mzl.plugins.system.user.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,7 +55,12 @@ public class UserController {
 	public ModelAndView save(Account account, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("ok");
 		try {
-			userService.save(account);
+			if("1".equals(account.getOperator())){
+				userService.save(account);
+			}else{
+				userService.update(account);
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,5 +68,33 @@ public class UserController {
 		mv.addObject("returnurl", "system/user/list");
 		mv.addObject("status", "success");
 		return mv;
+	}
+	
+	@RequestMapping("system/user/modify")
+	public ModelAndView modify(Account account, HttpServletRequest request,HttpServletResponse response){
+		ModelAndView mv = new ModelAndView("system/user/modify");
+		Account a = null;
+		try {
+			a = userService.getOne(account);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.addObject("account", a);
+		return mv;
+	}
+	
+	@RequestMapping("system/user/delete")
+	@ResponseBody
+	public Map<String, String> delete(Account account, HttpServletRequest request,HttpServletResponse response){
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			userService.delete(account);
+			map.put("status", "sucess");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return map;
 	}
 }

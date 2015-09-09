@@ -32,19 +32,19 @@ public class UserDaoImpl extends CommonDao<Account> implements UserDao{
 	@Override
 	public void delete(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.getSqlSession().delete("user.delete", t);
 	}
 
 	@Override
 	public void update(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.getSqlSession().update("user.update", t);
 	}
 
 	@Override
 	public Account getOne(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getSqlSession().selectOne("user.select_one", t);
 	}
 
 	@Override

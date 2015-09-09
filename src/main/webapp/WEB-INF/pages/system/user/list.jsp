@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="${path}/common/js/jqGrid/i18n/grid.locale-cn.js"></script>
 	<script type="text/javascript" src="${path}/common/js/jqGrid/jquery.jqGrid.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
+    <script type="text/javascript" src="${path}/common/js/layer/layer.js"></script>
 	<script type="text/javascript">
 		var path = "${path}"; //javascript全局变量
 		/**加载数据**/
@@ -28,13 +28,15 @@
 			                   '',
 			                   '帐号',
 			                   '密码',
-			                   '昵称'
+			                   '昵称',
+			                   '操作'
 			                   ],
 			       colModel: [
 			                  {name: 'id',index: 'id',width:'10%',align:'center',hidden: true,sortable: false}, 
-			                  {name: 'account',index: 'account',width:'10%',align:'center',hidden: false,sortable: false},
-			                  {name: 'password',index: 'password',width:'10%',align:'center',hidden: false,sortable: false},
-			                  {name: 'roleName',index: 'roleName',width:'10%',align:'center',hidden: false,sortable: false}
+			                  {name: 'account',index: 'account',width:'20%',align:'center',hidden: false,sortable: false},
+			                  {name: 'password',index: 'password',width:'20%',align:'center',hidden: false,sortable: false},
+			                  {name: 'roleName',index: 'roleName',width:'20%',align:'center',hidden: false,sortable: false},
+			                  {name:'act',index:'act', width:'15%',align:'center',sortable:false,sortable: false,formatter:initAct}
 			                  ],
 			       styleUI : 'Bootstrap',
 			       rowNum:10,   
@@ -49,13 +51,52 @@
 			       jsonReader: {
 			       	repeatitems: false
 			       },
+			       loadComplete:function(){
+			    	   $('.modify').click(function(){
+			    		   var rowid = $(this).attr("rowid");
+			    		   window.location.href = "${path}/system/user/modify?id="+rowid;
+			    	   });
+			    	   $('.delete').click(function(){
+			    		   var rowid = $(this).attr("rowid");
+			    		  var index =  layer.confirm('是否确定删除数据?', function(index){
+			    			    //do something
+			    			    $.ajax({
+				   					url:"${path}/system/user/delete?id="+rowid,
+				   					type:'post',
+				   					timeout:'60000',
+				   					dataType:'json',
+				   					success:function(jsonData,status){
+				   						if (status == "success"){
+				   							$("#userlist").trigger("reloadGrid");
+				   							layer.close(index);
+				   						}
+				   					},
+				   					error:function(){
+				   						layer.close(index);
+				   						layer.msg("通讯失败");
+				   						
+				   					}
+				   				});
+			    			});
+			    	   });
+			       },
 			       toolbar: [false,"top"]
 				});
-				
+				//新增按钮
 				$('#create').bind("click",function(){
 					window.location.href = "${path}/system/user/create";
 				});
+				
 		})
+		
+		
+function initAct(cellvalue, options, rowdata){
+    var id = rowdata.id;
+	var content = '<button type="button" class="modify btn btn-info btn-xs" rowid='+id+'>修改</button>';
+	content+='&nbsp;&nbsp;';
+	content+='<button type="button" class="delete btn btn-success btn-xs" rowid='+id+'>删除</button>';
+  	return content;
+}
 	</script>
 </head>
 <body>
