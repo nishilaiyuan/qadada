@@ -20,7 +20,7 @@
    <div class="top">
         <div class="topright">    
             <ul>
-                <li><span><img src="${path}/common/images/help.png" title="帮助"  class="helpimg"/></span><a href="#">帮助</a></li>
+                <li><a href="#">帮助</a></li>
                 <li><a href="#">关于</a></li>
                 <li><a href="${path}/j_spring_security_logout" target="_parent">退出</a></li>
             </ul>
