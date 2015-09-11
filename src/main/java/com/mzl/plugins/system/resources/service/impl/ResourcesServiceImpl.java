@@ -1,6 +1,8 @@
 package com.mzl.plugins.system.resources.service.impl;
 
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,43 +31,62 @@ public class ResourcesServiceImpl implements ResourcesService{
 	@Override
 	public List<Resources> getPaginatedList(Resources t) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return resourcesDao.getPaginatedList(t);
 	}
 
 	@Override
 	public Long getRecordCount(Resources t) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return resourcesDao.getRecordCount(t);
 	}
 
 	@Override
 	public void delete(Resources t) throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.resourcesDao.delete(t);
 	}
 
 	@Override
 	public void update(Resources t) throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.resourcesDao.update(t);
 	}
 
 	@Override
 	public Resources getOne(Resources t) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return resourcesDao.getOne(t);
 	}
 
 	@Override
 	public void save(Resources t) throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.resourcesDao.save(t);
 	}
 
 	@Override
 	public List<Resources> findAccountResourcess(Account account) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Map<String, Object> getGrid(Resources resources) throws Exception {
+		// TODO Auto-generated method stub
+		List<Resources> resultList = null;
+		Map<String, Object> map = new Hashtable<String, Object>();
+		//分页列表
+		resultList = this.getPaginatedList(resources);
+		// 记录数
+		long record = this.getRecordCount(resources);
+		// 页数
+		int pageCount = (int) Math.ceil(record / (double) resources.getRows());
+
+		map.put("rows", resultList);
+		map.put("page", resources.getPage());
+		map.put("total", pageCount);
+		map.put("records", record);
+		return map;
 	}
 
 

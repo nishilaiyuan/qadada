@@ -33,4 +33,64 @@
 	order By level asc
   </select>
 
+
+	<!-- 查询记录总条数 -->
+	<select id="getRecordCount" parameterMap="resources" resultType="long">
+		select count(1) from SM_Resources
+	</select>
+	<!-- 查询分页数据 -->
+	<select id="getPaginatedList" parameterMap="resources" resultMap="resourcesResult">
+		select * from SM_Resources order By level asc limit ${start},${offset} 
+	</select>
+	<!-- 查询一条记录 -->
+	<select id="select_one" parameterMap="resources" resultMap="resourcesResult">
+		select * from SM_Resources where ID = ${id}
+	</select>
+	
+	<!-- 插入记录 -->
+	<insert id="insert" parameterMap="resources">
+		INSERT INTO SM_Resources
+		<trim prefix="(" prefixOverrides="," suffix=")">
+			<if test="name !=null and  name !=''">,Name</if>
+			<if test="parentId !=null and  parentId != ''">,ParentId</if>
+			<if test="resKey !=null and  resKey !=''">,ResKey</if>
+			<if test="resUrl !=null and  resUrl !=''">,ResUrl</if>
+			<if test="level !=null and  level !=''">,Level</if>
+			<if test="type !=null and  type !=''">,Type</if>
+			<if test="description !=null and  description !=''">,Description</if>
+		</trim>
+		values
+		<trim prefix="(" prefixOverrides="," suffix=")">
+			<if test="name !=null and  name !=''">,#{name}</if>
+			<if test="parentId !=null and  parentId != ''">,#{parentId}</if>
+			<if test="resKey !=null and  resKey != ''">,#{resKey}</if>
+			<if test="resKey !=null and  resUrl != ''">,#{resUrl}</if>
+			<if test="level !=null and  level != ''">,#{level}</if>
+			<if test="type !=null and  type != ''">,#{type}</if>
+			<if test="description !=null and  description != ''">,#{description}</if>
+		</trim>
+		<selectKey keyProperty="generatedKey" resultType="Long">
+			select LAST_INSERT_ID() as generatedKey     
+		</selectKey>
+	</insert>
+	<!-- 更新记录 -->
+	<update id="update" parameterMap="resources">
+		update SM_Resources
+		<set>
+			<trim prefixOverrides=",">
+				<if test="name !=null and  name !=''">,Name=#{name}</if>
+				<if test="parentId !=null and  parentId != ''">,ParentId=#{parentId}</if>
+				<if test="resKey !=null and  resKey != ''">,ResKey=#{resKey}</if>
+				<if test="resKey !=null and  resUrl != ''">,ResUrl=#{resUrl}</if>
+				<if test="level !=null and  level != ''">,Level=#{level}</if>
+				<if test="type !=null and  type != ''">,Type=#{type}</if>
+				<if test="description !=null and  description != ''">,Description=#{description}</if>
+			</trim>
+		</set>
+		where ID = ${id}
+	</update>
+	<!-- 删除记录 -->
+	<delete id="delete" parameterMap="resources">
+		delete from SM_Resources where ID = ${id} 
+	</delete>
 </mapper>

@@ -23,7 +23,7 @@ public class ResourcesDaoImpl extends CommonDao<Resources> implements ResourcesD
 			Resources t)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getSqlSession().selectList("resources.getPaginatedList", t);
 	}
 
 	@Override
@@ -31,35 +31,35 @@ public class ResourcesDaoImpl extends CommonDao<Resources> implements ResourcesD
 			Resources t)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getSqlSession().selectOne("resources.getRecordCount", t);
 	}
 
 	@Override
 	public void delete(Resources t)
 			throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.getSqlSession().delete("resources.delete", t);
 	}
 
 	@Override
 	public void update(Resources t)
 			throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.getSqlSession().update("resources.update", t);
 	}
 
 	@Override
 	public Resources getOne(Resources t)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getSqlSession().selectOne("resources.select_one", t);
 	}
 
 	@Override
 	public void save(Resources t)
 			throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.getSqlSession().insert("resources.insert", t);
 	}
 
 
