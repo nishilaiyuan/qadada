@@ -11,14 +11,30 @@
 	<link href="${path}/common/css/index.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 	<link href="${path}/common/css/jqGrid/ui.jqgrid-bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="${path}/common/css/bootstrap/bootstrap-treeview.css" rel="stylesheet" type="text/css" />
 	
 	<script type="text/javascript" src="${path}/common/js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="${path}/common/js/jqGrid/i18n/grid.locale-cn.js"></script>
 	<script type="text/javascript" src="${path}/common/js/jqGrid/jquery.jqGrid.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${path}/common/js/bootstrap/bootstrap-treeview.js"></script>
     
 	<script type="text/javascript">
-		
+	 $(function(){
+		 $('#tree').treeview({
+			  data: eval('('+'${btree}'+')'),
+			  levels:1,
+			  showIcon:true,
+			  onNodeSelected: function(event, data) {
+				    $('#tree').css("display","none");
+				    $('#parentName').val(data.text);
+				    $('#parentId').val(data.id);
+				},    
+			});
+		 $('#parentName').click(function(){
+			 $('#tree').css("display","block");
+		 });
+	 })
 	</script>
 </head>
 <body>
@@ -33,8 +49,16 @@
 	    	<form class="form-horizontal" action="${path}/system/resources/save" method="post" id="resourcesForm">
 	    		<input type="hidden" name="id" value="${resources.id}"/>
 	    	  <input type="hidden" name="operator" value="2"/>
+	    	  <div class="form-group">
+			    <label for="parentId" class="col-sm-2 control-label">父节点</label>
+			    <div class="col-sm-10">
+			      <input type="text" readonly="readonly" class="form-control" name="parentName" id="parentName" style="width: 30%;" value="${resources.parentName}" />
+			      <input type="hidden" class="form-control" name="parentId" id="parentId" style="width: 30%;"  />
+			      <div id="tree" style="width: 30%;display:none;position: absolute;z-index: 9999;height: 200px;overflow: auto;"></div>
+			    </div>
+			  </div>
 			  <div class="form-group">
-			    <label for="inputName" class="col-sm-2 control-label">帐号</label>
+			    <label for="inputName" class="col-sm-2 control-label">名称</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" name="name" id="name"  style="width: 30%;" value="${resources.name}"/>
 			    </div>

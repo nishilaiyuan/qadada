@@ -13,4 +13,6 @@ public interface ResourcesService extends BaseService<Resources> {
 
 	public Map<String, Object> getGrid(Resources resources) throws Exception;
 
+	public String getTree() throws Exception;
+
 }

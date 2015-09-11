@@ -20,43 +20,21 @@
     <script type="text/javascript" src="${path}/common/js/bootstrap/bootstrap-treeview.js"></script>
     
 	<script type="text/javascript">
-	var data = [
-	            {
-	              text: "Parent 1",
-	              nodes: [
-	                {
-	                  text: "Child 1",
-	                  nodes: [
-	                    {
-	                      text: "Grandchild 1"
-	                    },
-	                    {
-	                      text: "Grandchild 2"
-	                    }
-	                  ]
-	                },
-	                {
-	                  text: "Child 2"
-	                }
-	              ]
-	            }
-	          ]; 
-	
 	 $(function(){
 		 $('#tree').treeview({
-			  data: data,
+			  data: eval('('+'${btree}'+')'),
+			  levels:1,
 			  showIcon:true,
 			  onNodeSelected: function(event, data) {
 				    $('#tree').css("display","none");
 				    $('#parentName').val(data.text);
-				    $('#parentId').val(data.nodeId);
+				    $('#parentId').val(data.id);
 				},    
 			});
 		 $('#parentName').click(function(){
 			 $('#tree').css("display","block");
 		 });
 	 })
-	
 	</script>
 </head>
 <body>

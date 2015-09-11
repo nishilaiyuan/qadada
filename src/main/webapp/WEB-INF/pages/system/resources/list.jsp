@@ -27,6 +27,7 @@
 					colNames: [
 			                   '',
 			                   '名称',
+			                   '父节点',
 			                   '标识',
 			                   '链接',
 			                   '排序',
@@ -36,6 +37,7 @@
 			       colModel: [
 			                  {name: 'id',index: 'id',width:'10%',align:'center',hidden: true,sortable: false}, 
 			                  {name: 'name',index: 'name',width:'20%',align:'center',hidden: false,sortable: false},
+			                  {name: 'parentName',index: 'parentName',width:'20%',align:'center',hidden: false,sortable: false},
 			                  {name: 'resKey',index: 'resKey',width:'20%',align:'center',hidden: false,sortable: false},
 			                  {name: 'resUrl',index: 'resUrl',width:'20%',align:'center',hidden: false,sortable: false},
 			                  {name: 'level',index: 'level',width:'20%',align:'center',hidden: false,sortable: false},

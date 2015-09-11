@@ -40,11 +40,11 @@
 	</select>
 	<!-- 查询分页数据 -->
 	<select id="getPaginatedList" parameterMap="resources" resultMap="resourcesResult">
-		select * from SM_Resources order By level asc limit ${start},${offset} 
+		select <include refid="selectId" /> from SM_Resources resources order By resources.level asc limit ${start},${offset} 
 	</select>
 	<!-- 查询一条记录 -->
 	<select id="select_one" parameterMap="resources" resultMap="resourcesResult">
-		select * from SM_Resources where ID = ${id}
+		select <include refid="selectId" /> from SM_Resources resources where resources.ID = ${id}
 	</select>
 	
 	<!-- 插入记录 -->

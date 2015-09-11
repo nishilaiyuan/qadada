@@ -72,13 +72,16 @@ public class ResourcesColtroller extends BaseController<Resources>{
 	public ModelAndView modify(Resources resources, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("system/resources/modify");
 		Resources r = null;
+		String btree = "";
 		try {
 			r = resourcesService.getOne(resources);
+			btree = resourcesService.getTree();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mv.addObject("resources",r);
+		mv.addObject("btree", btree);
 		return mv;
 	}
 	
@@ -139,6 +142,14 @@ public class ResourcesColtroller extends BaseController<Resources>{
 	@RequestMapping("system/resources/create")
 	public ModelAndView create(Resources resources, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("system/resources/create");
+		String btree = "";
+		try {
+			btree = resourcesService.getTree();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.addObject("btree", btree);
 		return mv;
 	}
 }
