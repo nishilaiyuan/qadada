@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roles">
+
+  <parameterMap id="roles" type="com.mzl.plugins.system.roles.entity.Roles" />
+  
+  <resultMap id="rolesResult" type="com.mzl.plugins.system.roles.entity.Roles">
+    <result property="id" column="ID" javaType="java.lang.Long" />
+    <result property="name" column="Name" />
+    <result property="roleKey" column="RoleKey" />
+    <result property="description" column="Description" />
+  </resultMap>
+
+	<!-- 查询记录总条数 -->
+	<select id="getRecordCount" parameterMap="roles" resultType="long">
+		select count(1) from SM_Role
+	</select>
+	<!-- 查询分页数据 -->
+	<select id="getPaginatedList" parameterMap="roles" resultMap="rolesResult">
+		select * from SM_Role limit ${start},${offset} 
+	</select>
+	<!-- 查询一条记录 -->
+	<select id="select_one" parameterMap="roles" resultMap="rolesResult">
+		select * from SM_Role  where ID = ${id}
+	</select>
+	<!-- 插入记录 -->
+	<insert id="insert" parameterMap="roles">
+		INSERT INTO SM_Role
+		<trim prefix="(" prefixOverrides="," suffix=")">
+			<if test="name !=null and  name !=''">,Name</if>
+			<if test="roleKey !=null and  roleKey != ''">,RoleKey</if>
+			<if test="description !=null and  description !=''">,Description</if>
+		</trim>
+		values
+		<trim prefix="(" prefixOverrides="," suffix=")">
+			<if test="name !=null and  name !=''">,#{name}</if>
+			<if test="roleKey !=null and  roleKey != ''">,#{roleKey}</if>
+			<if test="description !=null and  description !=''">,#{description}</if>
+		</trim>
+		<selectKey keyProperty="generatedKey" resultType="Long">
+			select LAST_INSERT_ID() as generatedKey     
+		</selectKey>
+	</insert>
+	<!-- 更新记录 -->
+	<update id="update" parameterMap="roles">
+		update SM_Role
+		<set>
+			<trim prefixOverrides=",">
+				<if test="name !=null and  name !=''">,Name = #{name}</if>
+				<if test="roleKey !=null and  roleKey != ''">,RoleKey = #{roleKey}</if>
+				<if test="description !=null and  description !=''">,Description = #{description}</if>
+			</trim>
+		</set>
+		where ID = ${id}
+	</update>
+	
+	<!-- 删除记录 -->
+	<delete id="delete" parameterMap="roles">
+		delete from SM_Role where ID = ${id} 
+	</delete>
+</mapper>

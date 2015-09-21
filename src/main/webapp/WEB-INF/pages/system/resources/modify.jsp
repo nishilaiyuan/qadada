@@ -84,7 +84,11 @@
 			  <div class="form-group">
 			    <label for="type" class="col-sm-2 control-label">类型</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="type" id="type"  style="width: 30%;" value="${resources.type}"/>
+			    	<select name="type" id="type" style="width: 30%;" class="form-control">
+			    		<option value="">--请选择--</option>
+			    		<option value="1" <c:if test="${resources.type==1}">selected="selected"</c:if>>导航</option>
+			    		<option value="2" <c:if test="${resources.type==2}">selected="selected"</c:if>>按钮</option>
+			    	</select>
 			    </div>
 			  </div>
 			  <div class="form-group">
