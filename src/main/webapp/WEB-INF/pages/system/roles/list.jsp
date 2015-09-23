@@ -223,12 +223,10 @@
 		          data: eval('('+'${btree}'+')'),
 		          onNodeChecked: function(event, node) {
 		        	  array.push(node.id);
-		        	  console.log(array);
 		          },
 		          onNodeUnchecked: function (event, node) {
 		        	  if(array.in_array(node.id)){
 		        		  array.remove(node.id);
-		        		  console.log(array);
 		        	  }
 		        	  
 		          }
