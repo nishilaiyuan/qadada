@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mzl.core.base.controller.BaseController;
+import com.mzl.plugins.system.resources.service.ResourcesService;
 import com.mzl.plugins.system.roles.entity.Roles;
 import com.mzl.plugins.system.roles.service.RolesService;
 
@@ -21,10 +22,20 @@ public class RolesController extends BaseController<Roles>{
 
 	@Autowired
 	private RolesService rolesService;
-
+	@Autowired
+	private ResourcesService resourcesService;
+	
 	@RequestMapping("system/roles/list")
 	public ModelAndView list(Roles entity, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("system/roles/list");
+		String btree = "";
+		try {
+			btree = resourcesService.getTree();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.addObject("btree", btree);
 		return mv;
 	}
 	

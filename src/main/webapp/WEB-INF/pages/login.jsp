@@ -4,57 +4,81 @@
         request.setAttribute("path", path);
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="${path}/common/css/login.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="${path}/common/js/jquery.js"></script>
-	<script type="text/javascript" src="${path}/common/js/login.js" ></script>
-		<script type="text/javascript" >
-			var path = "${path}";	//javascript全局变量
-		</script>
-		<title>Ultra-SelfMaintain</title>
+		<link href="${path}/common/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="${path}/common/css/font-awesome.min.css"  rel="stylesheet"/>
+		<link href="${path}/common/css/ace.min.css" rel="stylesheet" />
+		<title>Application</title>
 	</head>
-<body>
+	<body class="login-layout">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+							<div class="center">
+								<h1>
+									<i class="icon-leaf green"></i>
+									<span class="red">Ace</span>
+									<span class="white">Application</span>
+								</h1>
+								<h4 class="blue">&copy; Company Name</h4>
+							</div>
 
+							<div class="space-6"></div>
 
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header blue lighter bigger">
+												<i class="icon-coffee green"></i>
+												请输入帐号信息
+											</h4>
 
-    <div id="mainBody">
-      <div id="cloud1" class="cloud"></div>
-      <div id="cloud2" class="cloud"></div>
-    </div>  
+											<div class="space-6"></div>
 
+											<form action="${path}/submitlogin" method="post" id="loginForm" name="loginForm">
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" name="username" class="form-control" placeholder="用户名" />
+															<i class="icon-user"></i>
+														</span>
+													</label>
 
-<div class="logintop">    
-    <span>欢迎登录后台管理界面平台</span>    
-    <ul>
-    <li><a href="#">回首页</a></li>
-    <li><a href="#">帮助</a></li>
-    <li><a href="#">关于</a></li>
-    </ul>    
-    </div>
-    
-    <div class="loginbody">
-    
-    <span class="systemlogo"></span> 
-       
-    <div class="loginbox"> 
-           <form action="${path}/submitlogin" method="post" id="loginForm" name="loginForm">
-            <ul>
-            <li><input name="username" type="text" class="loginuser" value="admin" id="username" onclick="JavaScript:this.value=''"/></li>
-            <li><input name="password" type="password" class="loginpwd" value="密码" id="password" onclick="JavaScript:this.value=''"/></li>
-            <li><input type="submit" class="loginbtn" value="登录"   /> <label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
-            </ul>
-          </form>
-        </div>
-    
-    </div>
-    
-    
-    
-    <div class="loginbm">版权所有  2013  <a href="http://www.mycodes.net">源码之家</a> </div>
-	
-    
-</body>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" name="password" class="form-control" placeholder="密码" />
+															<i class="icon-lock"></i>
+														</span>
+													</label>
+
+													<div class="space"></div>
+
+													<div class="clearfix">
+														<label class="inline">
+															<input type="checkbox" class="ace" />
+															<span class="lbl"> 记住我</span>
+														</label>
+														<input type="submit" class="width-35 pull-right btn btn-sm btn-primary" value="登录"/>
+													</div>
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+										</div><!-- /widget-main -->
+									</div><!-- /widget-body -->
+								</div><!-- /login-box -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="${path}/common/js/jquery-2.0.3.min.js"></script>
+		</body>
 </html>

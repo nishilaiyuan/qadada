@@ -9,14 +9,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link href="${path}/common/css/index.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-	<link href="${path}/common/css/jqGrid/ui.jqgrid-bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="${path}/common/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="${path}/common/css/tree/bootstrap-treeview.css" rel="stylesheet" type="text/css" />
 	
-	<script type="text/javascript" src="${path}/common/js/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="${path}/common/js/jqGrid/i18n/grid.locale-cn.js"></script>
-	<script type="text/javascript" src="${path}/common/js/jqGrid/jquery.jqGrid.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
+	<script src="${path}/common/js/jquery-2.0.3.min.js" type="text/javascript" ></script>
+	<script src="${path}/common/js/bootstrap.min.js" type="text/javascript" ></script>
+    <script src="${path}/common/js/tree/bootstrap-treeview.js"></script>
 	<script type="text/javascript">
 		
 	</script>

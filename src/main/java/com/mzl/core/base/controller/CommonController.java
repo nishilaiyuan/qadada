@@ -56,7 +56,10 @@ public class CommonController{
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response){
 		return new ModelAndView("/main");
 	}
-	
+	@RequestMapping("/center")
+	public ModelAndView center(HttpServletRequest request, HttpServletResponse response){
+		return new ModelAndView("/center");
+	}
 	@RequestMapping ("submitlogin")
 	public String submitlogin(ModelMap model,String username,String password,HttpServletRequest request,RedirectAttributes attr) throws Exception{
 		try {
