@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mzl.plugins.system.roles.dao.RolesDao;
+import com.mzl.plugins.system.roles.entity.ResourcesRoleMapping;
 import com.mzl.plugins.system.roles.entity.Roles;
 import com.mzl.plugins.system.roles.service.RolesService;
 

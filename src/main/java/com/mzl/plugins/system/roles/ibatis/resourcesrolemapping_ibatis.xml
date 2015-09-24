@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resourcesRoleMapping">
+
+  <parameterMap id="resourcesRoleMapping" type="com.mzl.plugins.system.roles.entity.ResourcesRoleMapping" />
+  
+  <resultMap id="resourcesRoleMappingResult" type="com.mzl.plugins.system.roles.entity.ResourcesRoleMapping">
+    <result property="roleID" column="RoleID"  />
+    <result property="resourcesID" column="ResourcesID" />
+  </resultMap>
+
+	<!-- 根据角色ID查询 -->
+	<select id="select_all" parameterMap="resourcesRoleMapping" resultMap="resourcesRoleMappingResult">
+		select * from sm_resourcesrolemapping  where roleID = ${roleID}
+	</select>
+	
+	<!-- 插入记录 -->
+	<insert id="insert_batch" parameterType="java.util.List">
+		INSERT INTO sm_resourcesrolemapping (RoleID,ResourcesID)
+		values
+		<foreach collection="list" item = "item" index="index" separator=","> 
+  			(#{item.roleID},#{item.resourcesID}) 
+    	</foreach>
+	</insert>
+	
+	<!-- 删除记录 -->
+	<delete id="delete_batch" parameterType="java.util.List">
+		delete from sm_resourcesrolemapping where roleID in
+		<foreach collection="list" item = "item" open="(" separator="," close=")"> 
+  			#{item.roleID} 
+    	</foreach>
+	</delete>
+</mapper>

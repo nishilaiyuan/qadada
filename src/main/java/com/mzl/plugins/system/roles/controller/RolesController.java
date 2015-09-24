@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mzl.core.base.controller.BaseController;
 import com.mzl.plugins.system.resources.service.ResourcesService;
+import com.mzl.plugins.system.roles.entity.ResourcesRoleMapping;
 import com.mzl.plugins.system.roles.entity.Roles;
+import com.mzl.plugins.system.roles.service.ResourcesRoleMappingService;
 import com.mzl.plugins.system.roles.service.RolesService;
 
 @Controller
@@ -24,6 +26,8 @@ public class RolesController extends BaseController<Roles>{
 	private RolesService rolesService;
 	@Autowired
 	private ResourcesService resourcesService;
+	@Autowired
+	private ResourcesRoleMappingService resourcesRoleMappingService;
 	
 	@RequestMapping("system/roles/list")
 	public ModelAndView list(Roles entity, HttpServletRequest request,HttpServletResponse response){
@@ -131,6 +135,27 @@ public class RolesController extends BaseController<Roles>{
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			rolesService.delete(entity);
+			map.put("status", "sucess");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	/**
+	 * 保存角色资源关系
+	 * @param resources
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("system/roles/savemapping")
+	@ResponseBody
+	public Map<String, String> savemapping(ResourcesRoleMapping entity, HttpServletRequest request,HttpServletResponse response){
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			resourcesRoleMappingService.save(entity);
 			map.put("status", "sucess");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

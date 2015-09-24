@@ -8,4 +8,5 @@ import com.mzl.plugins.system.roles.entity.Roles;
 public interface RolesService extends BaseService<Roles>{
 
 	public Map<String, Object> getGrid(Roles entity) throws Exception;
+
 }

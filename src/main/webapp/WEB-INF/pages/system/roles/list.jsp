@@ -96,7 +96,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-primary" id="save">保存</button>
       </div>
     </div>
   </div>
@@ -158,7 +158,7 @@
 				    	   });
 				    	   $('.delete').click(function(){
 				    		   var rowid = $(this).attr("rowid");
-				    		  var index =  layer.confirm('是否确定删除数据?', function(index){
+				    		   var index =  layer.confirm('是否确定删除数据?', function(index){
 				    			    //do something
 				    			    $.ajax({
 					   					url:"${path}/system/roles/delete?id="+rowid,
@@ -187,7 +187,7 @@
 				function initAct(cellvalue, options, rowdata){
 				    var id = rowdata.id;
 				    var content = "";
-				    content +='<button type="button" class="bindres btn btn-info btn-xs" rowid='+id+' data-toggle="modal" data-target="#myModal">绑定资源</button>';
+				    content +='<button type="button" class="bindres btn btn-info btn-xs" rowid='+id+' data-toggle="modal" data-target="#myModal" id="binddata">绑定资源</button>';
 					content+='&nbsp;';
 				    content +='<button type="button" class="modify btn btn-info btn-xs" rowid='+id+'>修改</button>';
 					content+='&nbsp;';
@@ -218,7 +218,7 @@
 			});
 			var array = new Array();
 			var $checkableTree = $('#treeview').treeview({
-				 showIcon: true,
+				  showIcon: true,
 		          showCheckbox: true,
 		          data: eval('('+'${btree}'+')'),
 		          onNodeChecked: function(event, node) {
@@ -252,6 +252,27 @@
 			$('#myModal').on('hidden.bs.modal', function (e) {
 				  $checkableTree.treeview('uncheckAll', { silent: $('#chk-check-silent').is(':checked') });
 				  console.log(array);
+			})
+			$("#save").click(function(){
+				$('#myModal').modal('hide');
+				var index = layer.open({type: 3});
+				var  rowid = $('#binddata').attr("rowid");
+				$.ajax({
+   					url:"${path}/system/roles/savemapping",
+   					type:'post',
+   					timeout:'60000',
+   					dataType:'json',
+   					data:{roleID:rowid,ids:array.join(",")},
+   					success:function(jsonData,status){
+   						if (status == "success"){
+   							layer.close(index);
+   						}
+   					},
+   					error:function(){
+   						layer.close(index);
+   						layer.msg("通讯失败");
+   					}
+   				});
 			})
 		</script>
 </body>

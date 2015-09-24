@@ -27,6 +27,8 @@ public class BaseEntiry {
 	/** 唯一标识串 */
 	private Long generatedKey;
 	
+	private String ids;
+	
 	public Long getId() {
 		return id;
 	}
@@ -99,6 +101,14 @@ public class BaseEntiry {
 
 	public void setOperator(String operator) {
 		this.operator = operator;
+	}
+
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
 	}
 	
 }
