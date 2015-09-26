@@ -108,32 +108,34 @@ public class ResourcesServiceImpl implements ResourcesService{
 		List<Resources> resourcesList = this.getAll(null);
 		// 合成树形数据
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = null;
 		if (resourcesList != null) {
 			for (Resources resources : resourcesList) {
-				// 树形参数
-				if("0".equals(resources.getLevel()+"")){
-					map.put("text", resources.getName());
-					map.put("id", resources.getId());
-					ArrayList<Map<String,Object>> nodesList = new ArrayList<Map<String,Object>>();
-					Map<String, Object> nodeMap = null;
-					for (Resources rr : resourcesList) {
-						nodeMap = new Hashtable<String, Object>();
-						if(resources.getId().equals(rr.getParentId())){
-							nodeMap.put("text", rr.getName());
-							nodeMap.put("id", rr.getId());
-							nodesList.add(nodeMap);
-						}
-					}
-					map.put("nodes", nodesList);
-				}
+				map = new HashMap<String, Object>();
+				map.put("id", resources.getId());
+				map.put("pId",resources.getParentId());
+				map.put("name", resources.getName());
+				map.put("parentName", resources.getParentName());
+				map.put("open", false);
+				list.add(map);
 			}
 			// 清空LIST
 			resourcesList = null;
-			list.add(map);
 		}
 		return list;
 	}
-
-
+//
+//	 { id:1, pId:0, name:"随意勾选 1", open:false},
+//     { id:11, pId:1, name:"随意勾选 1-1", open:true},
+//     { id:111, pId:11, name:"随意勾选 1-1-1"},
+//     { id:112, pId:11, name:"随意勾选 1-1-2"},
+//     { id:12, pId:1, name:"随意勾选 1-2", open:true},
+//     { id:121, pId:12, name:"随意勾选 1-2-1"},
+//     { id:122, pId:12, name:"随意勾选 1-2-2"},
+//     { id:2, pId:0, name:"随意勾选 2",  open:false},
+//     { id:21, pId:2, name:"随意勾选 2-1"},
+//     { id:22, pId:2, name:"随意勾选 2-2", open:true},
+//     { id:221, pId:22, name:"随意勾选 2-2-1"},
+//     { id:222, pId:22, name:"随意勾选 2-2-2"},
+//     { id:23, pId:2, name:"随意勾选 2-13"}
 }

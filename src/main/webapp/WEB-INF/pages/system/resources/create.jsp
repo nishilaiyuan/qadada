@@ -10,28 +10,39 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link href="${path}/common/css/index.css" rel="stylesheet" type="text/css" />
 	<link href="${path}/common/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="${path}/common/css/tree/bootstrap-treeview.css" rel="stylesheet" type="text/css" />
+	<link href="${path}/common/css/ztree/zTreeStyle.css" rel="stylesheet" type="text/css" />
 	
 	<script src="${path}/common/js/jquery-2.0.3.min.js" type="text/javascript" ></script>
 	<script src="${path}/common/js/bootstrap.min.js" type="text/javascript" ></script>
-    <script src="${path}/common/js/tree/bootstrap-treeview.js"></script>
+    <script src="${path}/common/js/ztree/jquery.ztree.all-3.5.js"></script>
     
 	<script type="text/javascript">
 	 $(function(){
-		 $('#tree').treeview({
-			  data: eval('('+'${btree}'+')'),
-			  levels:1,
-			  showIcon:true,
-			  onNodeSelected: function(event, data) {
-				    $('#tree').css("display","none");
-				    $('#parentName').val(data.text);
-				    $('#parentId').val(data.id);
-				},    
-			});
 		 $('#parentName').click(function(){
-			 $('#tree').css("display","block");
+			 $('#treepanel').css("display","block");
 		 });
+		 var setting = {    
+		            check:{
+		                enable:false
+		            },
+		            data:    {
+		                simpleData:{
+		                    enable:true
+		                }
+		            },
+		            callback:{
+		                onClick:zTreeOnClick
+		            }
+		            
+		        };
+		 $.fn.zTree.init($("#treeDemo"), setting, eval('('+'${btree}'+')'));
 	 })
+	 function zTreeOnClick(event, treeId, treeNode) {
+	    $('#parentName').val(treeNode.name);
+	    $('#parentId').val(treeNode.id);
+	    $('#treepanel').css("display","none");
+	};
+
 	</script>
 </head>
 <body>
@@ -50,7 +61,9 @@
 			    <div class="col-sm-10">
 			      <input type="text" readonly="readonly" class="form-control" name="parentName" id="parentName" placeholder="父节点"  style="width: 30%;"  />
 			      <input type="hidden" class="form-control" name="parentId" id="parentId" style="width: 30%;"  />
-			      <div id="tree" style="width: 30%;display:none;position: absolute;z-index: 9999;height: 200px;overflow: auto;"></div>
+			      <div class="panel panel-default" id="treepanel" style="display: none;width: 30%;">
+			    	 <ul id="treeDemo" class="ztree"></ul>
+				  </div>
 			    </div>
 			  </div>
 			  <div class="form-group">

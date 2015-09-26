@@ -76,7 +76,10 @@ public class ResourcesRoleMappingServiceImpl implements ResourcesRoleMappingServ
 			temp.setResourcesID(Long.valueOf(ids[i]));
 			listTemp.add(temp);
 		}
-		saveBeatch(listTemp);
+		if(null != listTemp && listTemp.size() != 0){
+			saveBeatch(listTemp);
+		}
+		
 	}
 
 	/**

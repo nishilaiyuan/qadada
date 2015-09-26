@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href="${path}/common/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="${path}/common/css/font-awesome.min.css"  rel="stylesheet"/>
-
+	
 	<!--[if IE 7]>
 	  <link rel="stylesheet" href="${path}/common/css/font-awesome-ie7.min.css" />
 	<![endif]-->
@@ -29,7 +29,7 @@
 	<link rel="stylesheet" href="${path}/common/css/ace.min.css" />
 	<link rel="stylesheet" href="${path}/common/css/ace-rtl.min.css" />
 	<link rel="stylesheet" href="${path}/common/css/ace-skins.min.css" />
-	<link href="${path}/common/css/tree/bootstrap-treeview.css" rel="stylesheet" type="text/css" />
+	<link href="${path}/common/css/ztree/zTreeStyle.css" rel="stylesheet" type="text/css" />
 	<!--[if lte IE 8]>
 	  <link rel="stylesheet" href="${path}/common/css/ace-ie.min.css" />
 	<![endif]-->
@@ -38,9 +38,21 @@
 
 	<!-- ace settings handler -->
 	<script src="${path}/common/js/ace-extra.min.js"></script>
+	<script type="text/javascript" src="${path}/common/js/jquery-2.0.3.min.js"></script>
+	<script src="${path}/common/js/bootstrap.min.js"></script>
+	<script src="${path}/common/js/typeahead-bs2.min.js"></script>
 
+	<!-- page specific plugin scripts -->
+	<script src="${path}/common/js/date-time/bootstrap-datepicker.min.js"></script>
+	<script src="${path}/common/js/jqGrid/jquery.jqGrid.min.js"></script>
+	<script src="${path}/common/js/jqGrid/i18n/grid.locale-en.js"></script>
+	<!-- ace scripts -->
+	<script src="${path}/common/js/ace-elements.min.js"></script>
+	<script src="${path}/common/js/ace.min.js"></script>
+	<script type="text/javascript" src="${path}/common/js/layer/layer.js"></script>
+	<script src="${path}/common/js/ztree/jquery.ztree.all-3.5.js"></script>
+	<script src="${path}/common/js/tools.js"></script>
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
 	<!--[if lt IE 9]>
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
@@ -83,44 +95,18 @@
 				</div>
 			</div>
 <!-- 绑定数据对话框 -->
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">绑定资源</h4>
-      </div>
-      <div class="modal-body">
-        <div id="treeview" />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" id="save">保存</button>
-      </div>
-    </div>
+<div class="panel panel-default" id="tree_select">
+  <div class="panel-body" style="height:120px;">
+    <ul id="treeDemo" class="ztree"></ul>
+    <input type="hidden" id="ids" />
+  </div>
+  <div class="panel-footer">
+    <button type="button" class="btn btn-default" id="close">关闭</button>
+    <button type="button" class="btn btn-primary" id="save">保存</button>
   </div>
 </div>
-<input type="hidden" id="param">
-		<script type="text/javascript" src="${path}/common/js/jquery-2.0.3.min.js"></script>
-		<script src="${path}/common/js/bootstrap.min.js"></script>
-		<script src="${path}/common/js/typeahead-bs2.min.js"></script>
-
-		<!-- page specific plugin scripts -->
-
-		<script src="${path}/common/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="${path}/common/js/jqGrid/jquery.jqGrid.min.js"></script>
-		<script src="${path}/common/js/jqGrid/i18n/grid.locale-en.js"></script>
-
-		<!-- ace scripts -->
-
-		<script src="${path}/common/js/ace-elements.min.js"></script>
-		<script src="${path}/common/js/ace.min.js"></script>
-		<script type="text/javascript" src="${path}/common/js/layer/layer.js"></script>
-		<script src="${path}/common/js/tree/bootstrap-treeview.js"></script>
-		<!-- inline scripts related to this page -->
-
 		<script type="text/javascript">
+			var bindIndex;
 			jQuery(function($) {
 				jQuery("#grid-table").jqGrid({
 					url: '${path}/system/roles/grid',
@@ -152,11 +138,26 @@
 						setTimeout(function(){
 							updatePagerIcons(table);
 						}, 0);
+						//绑定数据
+						$('.bindres').click(function(){
+							var rowid = $(this).attr("rowid");
+							bindIndex = layer.open({
+							    type: 1,
+							    shade: [0.8, '#393D49'],
+							    title: '选择数据', //不显示标题
+							    skin: 'layui-layer-rim', //加上边框
+							    area: ['420px', '260px'], //宽高
+							    content: $('#tree_select'), //捕获的元素
+							    cancel: function(bindIndex){
+							        layer.close(bindIndex);
+							    }
+							});
+						});
 						$('.modify').click(function(){
 				    		   var rowid = $(this).attr("rowid");
 				    		   window.location.href = "${path}/system/roles/modify?id="+rowid;
 				    	   });
-				    	   $('.delete').click(function(){
+				    	 $('.delete').click(function(){
 				    		   var rowid = $(this).attr("rowid");
 				    		   var index =  layer.confirm('是否确定删除数据?', function(index){
 				    			    //do something
@@ -174,7 +175,6 @@
 					   					error:function(){
 					   						layer.close(index);
 					   						layer.msg("通讯失败");
-					   						
 					   					}
 					   				});
 				    			});
@@ -187,7 +187,7 @@
 				function initAct(cellvalue, options, rowdata){
 				    var id = rowdata.id;
 				    var content = "";
-				    content +='<button type="button" class="bindres btn btn-info btn-xs" rowid='+id+' data-toggle="modal" data-target="#myModal" id="binddata">绑定资源</button>';
+				    content +='<button type="button" class="bindres btn btn-info btn-xs" rowid='+id+'>绑定资源</button>';
 					content+='&nbsp;';
 				    content +='<button type="button" class="modify btn btn-info btn-xs" rowid='+id+'>修改</button>';
 					content+='&nbsp;';
@@ -195,77 +195,51 @@
 				  	return content;
 				}
 				
-				function updatePagerIcons(table) {
-					var replacement = 
-					{
-						'ui-icon-seek-first' : 'icon-double-angle-left bigger-140',
-						'ui-icon-seek-prev' : 'icon-angle-left bigger-140',
-						'ui-icon-seek-next' : 'icon-angle-right bigger-140',
-						'ui-icon-seek-end' : 'icon-double-angle-right bigger-140'
-					};
-					$('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
-						var icon = $(this);
-						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-						
-						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
-					})
-				}
 				//新增按钮
 				$('#create').bind("click",function(){
 					window.location.href = "${path}/system/roles/create";
 				});
 				
+				
 			});
-			var array = new Array();
-			var $checkableTree = $('#treeview').treeview({
-				  showIcon: true,
-		          showCheckbox: true,
-		          data: eval('('+'${btree}'+')'),
-		          onNodeChecked: function(event, node) {
-		        	  array.push(node.id);
-		          },
-		          onNodeUnchecked: function (event, node) {
-		        	  if(array.in_array(node.id)){
-		        		  array.remove(node.id);
-		        	  }
-		        	  
-		          }
-	        });
-			Array.prototype.in_array = function(e){  
-				for(i=0;i<this.length && this[i]!=e;i++);  
-				return !(i==this.length);  
-			}  
-			Array.prototype.indexOf = function(val) {
-	            for (var i = 0; i < this.length; i++) {
-	                if (this[i] == val) return i;
-	            }
-	            return -1;
-	        };
-			Array.prototype.remove = function(val) {
-	            var index = this.indexOf(val);
-	            if (index > -1) {
-	                this.splice(index, 1);
-	            }
-	        };
-			$('#myModal').on('show.bs.modal', function (e) {
-			})
-			$('#myModal').on('hidden.bs.modal', function (e) {
-				  $checkableTree.treeview('uncheckAll', { silent: $('#chk-check-silent').is(':checked') });
-				  console.log(array);
-			})
+			var setting = {    
+		            check:{
+		                enable:true
+		            },
+		            data:    {
+		                simpleData:{
+		                    enable:true
+		                }
+		            },
+		            callback:{
+		            	onCheck:onCheck
+		            }
+		            
+		        };
+			 $.fn.zTree.init($("#treeDemo"), setting, eval('('+'${btree}'+')'));
+			 function onCheck(event, treeId, treeNode) {
+				 var treeObj=$.fn.zTree.getZTreeObj("treeDemo");
+	             var nodes=treeObj.getCheckedNodes(true);
+	             var ids="";
+	             for(var i=0;i<nodes.length;i++){
+		            ids+=nodes[i].id+",";
+	             }
+	             $('#ids').val(ids)
+			};
 			$("#save").click(function(){
 				$('#myModal').modal('hide');
 				var index = layer.open({type: 3});
-				var  rowid = $('#binddata').attr("rowid");
+				var  rowid = $('.bindres').attr("rowid");
 				$.ajax({
    					url:"${path}/system/roles/savemapping",
    					type:'post',
    					timeout:'60000',
    					dataType:'json',
-   					data:{roleID:rowid,ids:array.join(",")},
+   					data:{roleID:rowid,ids:$('#ids').val()},
    					success:function(jsonData,status){
    						if (status == "success"){
    							layer.close(index);
+   							layer.close(bindIndex);
    						}
    					},
    					error:function(){
