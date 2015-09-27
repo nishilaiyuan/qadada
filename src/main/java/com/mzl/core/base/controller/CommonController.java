@@ -61,18 +61,16 @@ public class CommonController{
 		return new ModelAndView("/center");
 	}
 	@RequestMapping ("submitlogin")
-	public String submitlogin(ModelMap model,String username,String password,HttpServletRequest request,RedirectAttributes attr) throws Exception{
+	public String submitlogin(ModelMap model,String account,String password,HttpServletRequest request,RedirectAttributes attr) throws Exception{
 		try {
 			if (!request.getMethod().equals("POST")) {
 				request.setAttribute("error","支持POST方法提交！");
 			}
-			if (Common.isEmpty(username) || Common.isEmpty(password)) {
+			if (Common.isEmpty(account) || Common.isEmpty(password)) {
 				request.setAttribute("error","用户名或密码不能为空！");
 				return "redirect:/login";
 			}
-			// 验证用户账号与密码是否正确
-			
-			Account users = this.userService.querySingleAccount(username);
+			Account users = this.userService.querySingleAccount(account);
 			if (users == null) {
 //				request.setAttribute("error", "用户或密码不正确！");
 				return "redirect:/login";
@@ -84,7 +82,7 @@ public class CommonController{
 //			else if(!Md5Tool.getMd5(password).equals(users.getPassword())){
 //				return "redirect:login";
 //			}
-			Authentication authentication = myAuthenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,users.getPassword()));
+			Authentication authentication = myAuthenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account,users.getPassword()));
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			securityContext.setAuthentication(authentication);
 			HttpSession session = request.getSession(true);  

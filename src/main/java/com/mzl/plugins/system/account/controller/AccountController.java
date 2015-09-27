@@ -32,6 +32,12 @@ public class AccountController {
 		ModelAndView mv = new ModelAndView("system/user/list");
 		return mv;
 	}
+
+	/** 
+	 * 此方法描述的是： 账号列表json数据
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午10:06:22
+	 */ 
 	@RequestMapping("system/user/grid")
 	@ResponseBody
 	public Map<String, Object> json(Account account, HttpServletRequest request,HttpServletResponse response){
@@ -45,12 +51,24 @@ public class AccountController {
 		return map;
 	}
 	
+	 
+	/** 
+	 * 此方法描述的是： 帐号创建界面
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午10:06:35
+	 */ 
 	@RequestMapping("system/user/create")
 	public ModelAndView create(Account account, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("system/user/create");
 		return mv;
 	}
 	
+	 
+	/** 
+	 * 此方法描述的是： 保存或更新
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午10:06:44
+	 */ 
 	@RequestMapping("system/user/save")
 	public ModelAndView save(Account account, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("ok");
@@ -70,6 +88,12 @@ public class AccountController {
 		return mv;
 	}
 	
+	 
+	/** 
+	 * 此方法描述的是： 修改界面
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午10:06:52
+	 */ 
 	@RequestMapping("system/user/modify")
 	public ModelAndView modify(Account account, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("system/user/modify");
@@ -84,6 +108,12 @@ public class AccountController {
 		return mv;
 	}
 	
+	 
+	/** 
+	 * 此方法描述的是： 删除
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午10:06:59
+	 */ 
 	@RequestMapping("system/user/delete")
 	@ResponseBody
 	public Map<String, String> delete(Account account, HttpServletRequest request,HttpServletResponse response){

@@ -6,9 +6,9 @@ public class Account extends BaseEntiry{
 
 	private String account;//账号名
 	
-	private String roleName;//账号名
-
 	private String password;//密码
+	
+	private String name;//账号名
 
 	private String description;//说明
 
@@ -25,12 +25,12 @@ public class Account extends BaseEntiry{
 		this.account = account;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setRoleName(String name) {
+		this.name = name;
 	}
 
 	public String getPassword() {

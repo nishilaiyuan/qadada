@@ -9,22 +9,26 @@
     <result property="account" column="Account" />
   </resultMap>
   
+  	<!-- 根据账户查询用户 -->
 	<select id="querySingleAccount" parameterType="String" resultMap="accountResult">
 		select
 		*
-		from SM_User where Account=#{account}
+		from SM_Account where Account=#{account}
 	</select>
 
+    <!-- 查询用户总数 -->
 	<select id="getRecordCount" parameterMap="account" resultType="long">
-		select count(1) from sm_user
+		select count(1) from SM_Account
 	</select>
 	
+	<!-- 查询分页数据 -->
 	<select id="getPaginatedList" parameterMap="account" resultMap="accountResult">
-		select * from sm_user limit ${start},${offset}
+		select * from SM_Account limit ${start},${offset}
 	</select>
 	
+	<!-- 插入记录 -->
 	<insert id="insert" parameterMap="account">
-		INSERT INTO sm_user
+		INSERT INTO SM_Account
 		<trim prefix="(" prefixOverrides="," suffix=")">
 			<if test="account !=null and  account!=''">,Account</if>
 			<if test="password !=null and  password!=''">,Password</if>
@@ -39,15 +43,20 @@
 		</selectKey>
 	</insert>
 	
+	<!-- 查询一条用户信息 -->
 	<select id="select_one" parameterMap="account" resultMap="accountResult">
 		select
 		*
-		from SM_User where ID=#{id}
+		from SM_Account
+		<where>
+			<if test="id != null and id != '' ">ID=#{id}</if>
+			<if test="account != null and account != '' ">Account = #{account}</if>
+		</where>
 	</select>
 	
-	<!-- 角色更新 -->
+	<!-- 更新账户 -->
 	<update id="update" parameterMap="account">
-		update SM_User
+		update SM_Account
 		<set>
 			<trim prefixOverrides=",">
 				<if test="account !=null and  account!=''">,Account=#{account}</if>
@@ -57,7 +66,8 @@
 		where ID = ${id}
 	</update>
 	
+	<!-- 删除账户 -->
 	<delete id="delete" parameterMap="account">
-		delete from SM_User where ID = ${id} 
+		delete from SM_Account where ID = ${id} 
 	</delete>
 </mapper>
