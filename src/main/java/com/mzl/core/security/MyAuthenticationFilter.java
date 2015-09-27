@@ -18,8 +18,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 
 //import com.lanyuan.dao.UserDao;
-import com.mzl.plugins.system.user.entity.Account;
-import com.mzl.plugins.system.user.service.UserService;
+
+
+import com.mzl.plugins.system.account.entity.Account;
+import com.mzl.plugins.system.account.service.AccountService;
 //import com.lanyuan.entity.UserLoginList;
 import com.mzl.util.Common;
 
@@ -42,7 +44,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 	 */
 	private String errorUrl = "/login";
 	@Autowired
-	private UserService userService;
+	private AccountService accountService;
 	
 	/**
 	 * 自定义表单参数的name属性，默认是 j_username 和 j_password
@@ -92,7 +94,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 		u.setAccount(username);
 		Account user = null;
 		try {
-			user = this.userService.getOne(u);
+			user = this.accountService.getOne(u);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

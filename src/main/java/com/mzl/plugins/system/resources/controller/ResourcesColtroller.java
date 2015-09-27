@@ -16,37 +16,37 @@ import com.mzl.core.base.controller.BaseController;
 import com.mzl.plugins.system.resources.entity.Resources;
 import com.mzl.plugins.system.resources.service.ResourcesService;
 
-/**
- * 资源控制器类
- * @author Administrator
- *
- */
+ 
+/** 
+ * 此类描述的是： 资源管理类
+ * @author: maozhanlei/毛占磊
+ * @version: v1.0 
+ * @dateTime：2015年9月27日 下午9:58:52
+ */ 
 @Controller
 public class ResourcesColtroller extends BaseController<Resources>{
 
 	@Autowired
 	private ResourcesService resourcesService;
 	
-	/**
-	 * 返回资源列表界面
-	 * @param account
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+	 
+	/** 
+	 * 此方法描述的是： 返回资源管理列表页面
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午9:59:24
+	 */ 
 	@RequestMapping("system/resources/list")
 	public ModelAndView list(Resources resources, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("system/resources/list");
 		return mv;
 	}
 	
-	/**
-	 * 获得资源列表数据
-	 * @param resources
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+	 
+	/** 
+	 * 此方法描述的是： 获得资源管理json数据
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午9:59:51
+	 */ 
 	@RequestMapping("system/resources/grid")
 	@ResponseBody
 	public Map<String, Object> json(Resources resources, HttpServletRequest request,HttpServletResponse response){
@@ -61,13 +61,12 @@ public class ResourcesColtroller extends BaseController<Resources>{
 	}
 	
 	
-	/**
-	 * 修改界面
-	 * @param account
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+	 
+	/** 
+	 * 此方法描述的是： 资源修改界面
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午10:00:04
+	 */ 
 	@RequestMapping("system/resources/modify")
 	public ModelAndView modify(Resources resources, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("system/resources/modify");
@@ -84,14 +83,12 @@ public class ResourcesColtroller extends BaseController<Resources>{
 		mv.addObject("btree", btree);
 		return mv;
 	}
-	
-	/**
-	 * 保存或更新
-	 * @param resources
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+	 
+	/** 
+	 * 此方法描述的是： 保存或更新界面
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午10:00:15
+	 */ 
 	@RequestMapping("system/resources/save")
 	public ModelAndView save(Resources resources, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("ok");
@@ -111,13 +108,12 @@ public class ResourcesColtroller extends BaseController<Resources>{
 		return mv;
 	}
 	
-	/**
-	 * 删除元素
-	 * @param resources
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+	 
+	/** 
+	 * 此方法描述的是： 删除资源
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午10:00:26
+	 */ 
 	@RequestMapping("system/resources/delete")
 	@ResponseBody
 	public Map<String, String> delete(Resources resources, HttpServletRequest request,HttpServletResponse response){
@@ -132,13 +128,12 @@ public class ResourcesColtroller extends BaseController<Resources>{
 		return map;
 	}
 	
-	/**
-	 * 返回资源列表创建
-	 * @param account
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+	 
+	/** 
+	 * 此方法描述的是： 资源创建页面
+	 * @author: maozhanlei 
+	 * @dateTime：2015年9月27日 下午10:00:40
+	 */ 
 	@RequestMapping("system/resources/create")
 	public ModelAndView create(Resources resources, HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("system/resources/create");

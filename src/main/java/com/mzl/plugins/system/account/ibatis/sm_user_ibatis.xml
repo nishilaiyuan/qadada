@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="user">
+<mapper namespace="account">
 
-  <parameterMap id="user" type="com.mzl.plugins.system.user.entity.Account" />
+  <parameterMap id="account" type="com.mzl.plugins.system.account.entity.Account" />
   
-  <resultMap id="userResult" type="com.mzl.plugins.system.user.entity.Account">
+  <resultMap id="accountResult" type="com.mzl.plugins.system.account.entity.Account">
     <result property="id" column="ID" javaType="java.lang.Long" />
     <result property="account" column="Account" />
   </resultMap>
   
-	<select id="querySingleAccount" parameterType="String" resultMap="userResult">
+	<select id="querySingleAccount" parameterType="String" resultMap="accountResult">
 		select
 		*
 		from SM_User where Account=#{account}
 	</select>
 
-	<select id="getRecordCount" parameterMap="user" resultType="long">
+	<select id="getRecordCount" parameterMap="account" resultType="long">
 		select count(1) from sm_user
 	</select>
 	
-	<select id="getPaginatedList" parameterMap="user" resultMap="userResult">
+	<select id="getPaginatedList" parameterMap="account" resultMap="accountResult">
 		select * from sm_user limit ${start},${offset}
 	</select>
 	
-	<insert id="insert" parameterMap="user">
+	<insert id="insert" parameterMap="account">
 		INSERT INTO sm_user
 		<trim prefix="(" prefixOverrides="," suffix=")">
 			<if test="account !=null and  account!=''">,Account</if>
@@ -39,14 +39,14 @@
 		</selectKey>
 	</insert>
 	
-	<select id="select_one" parameterMap="user" resultMap="userResult">
+	<select id="select_one" parameterMap="account" resultMap="accountResult">
 		select
 		*
 		from SM_User where ID=#{id}
 	</select>
 	
 	<!-- 角色更新 -->
-	<update id="update" parameterMap="user">
+	<update id="update" parameterMap="account">
 		update SM_User
 		<set>
 			<trim prefixOverrides=",">
@@ -57,7 +57,7 @@
 		where ID = ${id}
 	</update>
 	
-	<delete id="delete" parameterMap="user">
+	<delete id="delete" parameterMap="account">
 		delete from SM_User where ID = ${id} 
 	</delete>
 </mapper>

@@ -26,10 +26,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mzl.plugins.system.account.entity.Account;
+import com.mzl.plugins.system.account.service.AccountService;
 import com.mzl.plugins.system.resources.entity.Resources;
 import com.mzl.plugins.system.resources.service.ResourcesService;
-import com.mzl.plugins.system.user.entity.Account;
-import com.mzl.plugins.system.user.service.UserService;
 import com.mzl.util.Common;
 import com.mzl.util.PropertiesUtils;
 
@@ -38,7 +38,7 @@ import com.mzl.util.PropertiesUtils;
 public class CommonController{
 	
 	@Autowired
-	private UserService userService;
+	private AccountService userService;
 	@Autowired
 	private AuthenticationManager myAuthenticationManager;
 	@Autowired

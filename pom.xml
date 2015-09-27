@@ -92,7 +92,6 @@
         <artifactId>spring-security-config</artifactId>  
         <version>3.2.0.RELEASE</version>  
     </dependency>
-	
 	<!-- aspectjweaver.jar这是Spring AOP所要用到的包 -->
 	<dependency>
 		<groupId>org.aspectj</groupId>
@@ -224,6 +223,7 @@
   
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <shiroVersion>1.2.3</shiroVersion>
     </properties>
     
   <build>

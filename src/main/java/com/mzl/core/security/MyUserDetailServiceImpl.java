@@ -14,10 +14,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.mzl.plugins.system.account.entity.Account;
+import com.mzl.plugins.system.account.service.AccountService;
 import com.mzl.plugins.system.resources.entity.Resources;
 import com.mzl.plugins.system.resources.service.ResourcesService;
-import com.mzl.plugins.system.user.entity.Account;
-import com.mzl.plugins.system.user.service.UserService;
 import com.mzl.util.PropertiesUtils;
 
 /**
@@ -40,7 +40,7 @@ import com.mzl.util.PropertiesUtils;
 public class MyUserDetailServiceImpl implements UserDetailsService {
 	
 	@Autowired
-	private UserService userService;
+	private AccountService accountService;
 	@Autowired
 	private ResourcesService resourcesService ;
 	// 登录验证
@@ -50,7 +50,7 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
 		//取得用户的权限
 		Account users = null;
 		try {
-			users = userService.querySingleAccount(username);
+			users = accountService.querySingleAccount(username);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

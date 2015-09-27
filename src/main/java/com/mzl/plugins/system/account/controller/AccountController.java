@@ -1,4 +1,4 @@
-package com.mzl.plugins.system.user.controller;
+package com.mzl.plugins.system.account.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mzl.plugins.system.user.entity.Account;
-import com.mzl.plugins.system.user.service.UserService;
+import com.mzl.plugins.system.account.entity.Account;
+import com.mzl.plugins.system.account.service.AccountService;
 
 @Controller
-public class UserController {
+public class AccountController {
 
 	@Autowired
-	private UserService userService;
+	private AccountService accountService;
 	/**
 	 * 返回列表界面
 	 * @param account
@@ -37,7 +37,7 @@ public class UserController {
 	public Map<String, Object> json(Account account, HttpServletRequest request,HttpServletResponse response){
 		Map<String, Object> map = null;
 		try {
-			map = userService.getGrid(account);
+			map = accountService.getGrid(account);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,9 +56,9 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("ok");
 		try {
 			if("1".equals(account.getOperator())){
-				userService.save(account);
+				accountService.save(account);
 			}else{
-				userService.update(account);
+				accountService.update(account);
 			}
 			
 		} catch (Exception e) {
@@ -75,7 +75,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("system/user/modify");
 		Account a = null;
 		try {
-			a = userService.getOne(account);
+			a = accountService.getOne(account);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,7 +89,7 @@ public class UserController {
 	public Map<String, String> delete(Account account, HttpServletRequest request,HttpServletResponse response){
 		Map<String, String> map = new HashMap<String, String>();
 		try {
-			userService.delete(account);
+			accountService.delete(account);
 			map.put("status", "sucess");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

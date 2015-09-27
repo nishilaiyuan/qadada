@@ -1,4 +1,4 @@
-package com.mzl.plugins.system.user.entity;
+package com.mzl.plugins.system.account.entity;
 
 import com.mzl.core.base.entity.BaseEntiry;
 

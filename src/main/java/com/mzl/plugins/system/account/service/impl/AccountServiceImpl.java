@@ -1,4 +1,4 @@
-package com.mzl.plugins.system.user.service.impl;
+package com.mzl.plugins.system.account.service.impl;
 
 import java.util.Hashtable;
 import java.util.List;
@@ -7,19 +7,19 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mzl.plugins.system.user.dao.UserDao;
-import com.mzl.plugins.system.user.entity.Account;
-import com.mzl.plugins.system.user.service.UserService;
+import com.mzl.plugins.system.account.dao.AccountDao;
+import com.mzl.plugins.system.account.entity.Account;
+import com.mzl.plugins.system.account.service.AccountService;
 
 /**
  * @author Administrator
  *
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class AccountServiceImpl implements AccountService{
 
 	@Autowired
-	private UserDao userDao;
+	private AccountDao accountDao;
 	
 	@Override
 	public List<Account> getAll(Account t) throws Exception {
@@ -30,43 +30,43 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<Account> getPaginatedList(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		return userDao.getPaginatedList(t);
+		return accountDao.getPaginatedList(t);
 	}
 
 	@Override
 	public Long getRecordCount(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		return userDao.getRecordCount(t);
+		return accountDao.getRecordCount(t);
 	}
 
 	@Override
 	public void delete(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		this.userDao.delete(t);
+		this.accountDao.delete(t);
 	}
 
 	@Override
 	public void update(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		this.userDao.update(t);
+		this.accountDao.update(t);
 	}
 
 	@Override
 	public Account getOne(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		return this.userDao.getOne(t);
+		return this.accountDao.getOne(t);
 	}
 
 	@Override
 	public void save(Account t) throws Exception {
 		// TODO Auto-generated method stub
-		userDao.save(t);
+		accountDao.save(t);
 	}
 
 	@Override
 	public Account querySingleAccount(String account) throws Exception {
 		// TODO Auto-generated method stub
-		return userDao.querySingleAccount(account);
+		return accountDao.querySingleAccount(account);
 	}
 
 	@Override
