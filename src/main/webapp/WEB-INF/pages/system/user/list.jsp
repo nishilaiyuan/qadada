@@ -109,15 +109,13 @@
 					colNames:[
 							'',
 							'帐号',
-							'密码',
 							'昵称',
 							'操作'  
 					],
 					colModel:[
 						{name: 'id',index: 'id',width:'10%',align:'center',hidden: true,sortable: false}, 
 	                    {name: 'account',index: 'account',width:'20%',align:'center',hidden: false,sortable: false},
-	                    {name: 'password',index: 'password',width:'20%',align:'center',hidden: false,sortable: false},
-	                    {name: 'roleName',index: 'roleName',width:'20%',align:'center',hidden: false,sortable: false},
+	                    {name: 'name',index: 'name',width:'20%',align:'center',hidden: false,sortable: false},
 	                    {name:'act',index:'act', width:'15%',align:'center',sortable:false,sortable: false,formatter:initAct}
 					], 
 					viewrecords : true,

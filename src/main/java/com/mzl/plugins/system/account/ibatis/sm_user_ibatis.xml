@@ -32,11 +32,13 @@
 		<trim prefix="(" prefixOverrides="," suffix=")">
 			<if test="account !=null and  account!=''">,Account</if>
 			<if test="password !=null and  password!=''">,Password</if>
+			<if test="name !=null and name !=''">,Name</if>
 		</trim>
 		values
 		<trim prefix="(" prefixOverrides="," suffix=")">
 			<if test="account !=null and  account!=''">,#{account}</if>
 			<if test="password !=null and  password!=''">,#{password}</if>
+			<if test="name !=null and name !=''">,#{name}</if>
 		</trim>
 		<selectKey keyProperty="generatedKey" resultType="Long">
 			select LAST_INSERT_ID() as generatedKey     
@@ -61,6 +63,7 @@
 			<trim prefixOverrides=",">
 				<if test="account !=null and  account!=''">,Account=#{account}</if>
 				<if test="password !=null and  password!=''">,Password=#{password}</if>
+				<if test="name !=null and name !=''">,Name = #{name}</if>
 			</trim>
 		</set>
 		where ID = ${id}

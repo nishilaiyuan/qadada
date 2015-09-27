@@ -37,9 +37,15 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+			    <label for="inputPassword3" class="col-sm-2 control-label">默认密码</label>
 			    <div class="col-sm-10">
-			      <input type="password" class="form-control" name="password" id="inputPassword" placeholder="密码" style="width: 30%;" />
+			      <input type="text" class="form-control" name="password" id="inputPassword" value="123456789" readonly="readonly" style="width: 30%;" />
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">姓名</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="name" id="name" placeholder="姓名" style="width: 30%;" />
 			    </div>
 			  </div>
 			  <div class="form-group">

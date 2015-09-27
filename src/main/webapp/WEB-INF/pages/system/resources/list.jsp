@@ -63,11 +63,11 @@
 					</div>
 
 					<div class="page-content">
-						<div class="panel panel-default" style="margin-bottom:5px;">
-						  <div class="panel-body" style="padding:5px;">
-						   	 显示查询
-						  </div>
-						</div>
+<!-- 						<div class="panel panel-default" style="margin-bottom:5px;"> -->
+<!-- 						  <div class="panel-body" style="padding:5px;"> -->
+<!-- 						   	 显示查询 -->
+<!-- 						  </div> -->
+<!-- 						</div> -->
 						<div class="panel panel-default" style="margin-bottom:5px;">
 						  <div class="panel-body"  id="toolbar" style="padding:5px;">
 						    <button type="button" class="btn btn-primary btn-xs" id="create">创建</button>
