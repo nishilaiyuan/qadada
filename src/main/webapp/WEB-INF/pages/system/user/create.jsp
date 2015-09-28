@@ -45,7 +45,7 @@
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">姓名</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" name="name" id="name" placeholder="姓名" style="width: 30%;" />
+			      <input type="text" class="form-control" name="userName" id="userName" placeholder="姓名" style="width: 30%;" />
 			    </div>
 			  </div>
 			  <div class="form-group">

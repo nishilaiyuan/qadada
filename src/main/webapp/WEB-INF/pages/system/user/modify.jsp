@@ -38,9 +38,9 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+			    <label for="inputPassword3" class="col-sm-2 control-label">姓名</label>
 			    <div class="col-sm-10">
-			      <input type="password" class="form-control" name="password" id="inputPassword" placeholder="密码" style="width: 30%;" value="${account.password}" />
+			      <input type="text" class="form-control" name="userName" id="userName" placeholder="姓名" style="width: 30%;" value="${account.userName}"/>
 			    </div>
 			  </div>
 			  <div class="form-group">

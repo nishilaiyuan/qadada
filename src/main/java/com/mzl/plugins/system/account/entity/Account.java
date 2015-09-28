@@ -8,7 +8,7 @@ public class Account extends BaseEntiry{
 	
 	private String password;//密码
 	
-	private String name;//账号名
+	private String userName;//账号名
 
 	private String description;//说明
 
@@ -25,12 +25,13 @@ public class Account extends BaseEntiry{
 		this.account = account;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setRoleName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
